@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Oxyhemoglobin Dissociation Curve Simulator</title>
+<style>
+:root{--navy:#173f80;--blue:#0a428e;--red:#d50916}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fc;color:#061b49}.top{background:linear-gradient(115deg,#183f85,#53639a);color:white;padding:7px 17px 8px;display:flex;justify-content:space-between;gap:15px;align-items:center}.top h1{font-size:clamp(23px,2.8vw,43px);letter-spacing:-1.3px;margin:0;font-weight:800}.top p{font-size:clamp(11px,1.2vw,17px);margin:1px 0 0}.reset{border:1px solid white;color:white;background:transparent;padding:11px 17px;border-radius:10px;cursor:pointer;white-space:nowrap}.reset:hover{background:#ffffff22}.layout{display:grid;grid-template-columns:minmax(0,2.32fr) minmax(340px,1fr);gap:12px;padding:10px;max-width:1900px;margin:auto}.left{min-width:0}.chartbox,.card{border:1px solid #afc3dc;border-radius:15px;background:linear-gradient(130deg,#fff,#f8fbff);overflow:hidden}.chartbox{padding:0 8px 3px}#chart{display:block;width:100%;height:auto;aspect-ratio:1060/645}.bottom{display:grid;grid-template-columns:1.05fr 1.75fr 1.3fr;gap:10px;margin-top:9px}.card h2{background:linear-gradient(105deg,#1b498d,#2c508e);color:white;margin:0;padding:9px 13px;font-size:clamp(13px,1.35vw,20px)}.card h2.red{background:linear-gradient(100deg,#a51b25,#c22b39)}.pad{padding:10px}.current table,.points table{border-collapse:collapse;width:100%;font-size:clamp(11px,1vw,15px)}td,th{padding:7px 8px;border-bottom:1px solid #d8e1ed}.current td:last-child{text-align:right;font-weight:700}.current tr:last-child{background:#fce0e4;color:#9d0012;font-weight:bold}.points th{text-align:center}.points td{text-align:center}.points td:first-child{text-align:left;font-weight:700}.points tr.lung{background:#d6e8ff}.points tr.rest{background:#fff0d5}.points tr.active{background:#fbd9dc}.foot{font-size:12px;text-align:center;font-style:italic;margin:8px 4px;color:#1e407c}.explanation{font-size:clamp(12px,1vw,15px);line-height:1.4;padding:11px 14px;background:#fff0f2;min-height:190px}.explanation strong{color:#9b101e}.explanation p{margin:6px 0}.controls .card{margin-bottom:10px}.controls h2{font-size:20px}.control{display:grid;grid-template-columns:1fr 168px 62px;align-items:center;gap:8px;margin:0 12px;padding:13px 0;border-bottom:1px solid #dce5f1;font-weight:700;color:#081d55}.control:last-child{border-bottom:0}.control input{width:100%;accent-color:var(--accent,#159d7e);cursor:pointer}.value{background:#fbfcff;border:1px solid #d0dce9;border-radius:8px;text-align:center;padding:8px 2px;font-size:16px;font-weight:500}.scenarios{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:8px}.group{border-radius:14px;padding:7px;background:#ffe2d0}.group.cool{background:#d9eaff}.group h3{margin:0 0 3px;text-align:center;font-size:19px;color:#9d2512}.group.cool h3{color:#003d94}.group small{display:block;text-align:center;font-size:12px;font-weight:bold;margin-bottom:8px}.scenario{display:flex;align-items:center;gap:8px;width:100%;min-height:53px;border:1px solid #ffb287;border-radius:12px;background:white;color:#10204c;margin:6px 0;padding:6px 8px;cursor:pointer;text-align:left;font-size:12px;font-weight:700}.cool .scenario{border-color:#83b5ff}.scenario:hover{filter:brightness(.95)}.scenario[aria-pressed=true]{background:#c52d38;color:white;border-color:#c52d38}.cool .scenario[aria-pressed=true]{background:#1858ae;border-color:#1858ae}.symbol{font-size:22px;width:29px;text-align:center;flex-shrink:0}.custom{background:#e8e1fa;border-radius:12px;padding:14px;text-align:center;font-size:13px;font-weight:700;margin:0 8px 10px}.hint{font-size:12px;text-align:center;color:#4b5c7d;margin:5px 8px 12px}svg text{font-family:Arial,Helvetica,sans-serif}#chart .zoneLabel{font-size:16px;font-weight:800}#chart .tick{font-size:17px;font-weight:700}#chart .axis{font-size:23px;font-weight:800}#chart .callout{font-size:13px}#chart .calloutTitle{font-size:15px;font-weight:800}@media(max-width:1050px){.layout{grid-template-columns:1fr}.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}.controls .card{margin:0}.bottom{grid-template-columns:1fr 1.5fr 1.4fr}}@media(max-width:700px){.top{align-items:start}.top h1{font-size:24px}.reset{padding:8px}.bottom,.controls{grid-template-columns:1fr}.control{grid-template-columns:1fr 140px 55px}.chartbox{padding:0}#chart .tick{font-size:18px}}
+
+/* Clean infographic-inspired hierarchy; every element remains native and interactive. */
+body{background:#f1f5fb}.layout{gap:14px;padding:12px}.chartbox{background:#fff;border:1px solid #adc5df;box-shadow:0 3px 14px #143a7310}.card{box-shadow:0 2px 10px #153c7210}.top{background:linear-gradient(110deg,#153d7e,#395f9a)}
+.controls h2{font-size:19px}.control{grid-template-columns:minmax(0,1fr) 145px 60px;padding:12px 0;gap:8px;font-size:14px}.control input[type=range]{height:22px;accent-color:var(--accent,#159d7e)}
+.group{padding:9px 7px 10px}.group h3{font-size:20px}.group small{font-size:12px;margin-bottom:10px}.scenario{gap:5px;padding:8px 7px;min-height:48px;font-size:12px;line-height:1.22;overflow:hidden;overflow-wrap:anywhere}.scenario .symbol{font-size:17px;width:24px;min-width:24px;line-height:1;letter-spacing:-1px;white-space:nowrap}.scenario span:last-child{min-width:0;flex:1}.scenario[aria-pressed=true]{box-shadow:inset 0 0 0 1px #fff7}.scenario:focus-visible,.reset:focus-visible{outline:3px solid #efba3b;outline-offset:2px}
+.bottom{gap:11px}.explanation{background:#fff5f5;border-top:2px solid #e4b6bb}.explanation strong{display:block;font-size:16px;margin-bottom:6px}.points tr{height:40px}.points th{font-size:13px}.foot{line-height:1.4}
+@media(max-width:1200px) and (min-width:1051px){.control{grid-template-columns:1fr 100px 54px}.scenario{font-size:11px}}
+@media(max-width:700px){.control{grid-template-columns:1fr 125px 55px}.bottom{gap:9px}}
+
+/* Teaching-first layout: clear hierarchy, graph prominent, explanations unobstructed. */
+:root{--navy:#173f80;--ink:#172b4d;--green:#159d7e}
+body{background:#f4f6fa;color:var(--ink)}
+.top{background:#214a8b;padding:16px 25px}.top h1{letter-spacing:-.6px;font-size:clamp(24px,2.5vw,36px)}.top p{font-size:14px;opacity:.94;line-height:1.5}
+.layout{grid-template-columns:minmax(0,2.5fr) minmax(340px,1fr);gap:18px;padding:18px;max-width:1800px}
+.chartbox,.card{background:#fff;border:1px solid #d9e1ed;border-radius:12px;box-shadow:0 2px 9px #173f8010}
+.chartbox{padding:6px 8px 0}.card h2{background:#244c89;font-size:16px;padding:12px 14px}.card h2.red{background:#a92437}
+.bottom{grid-template-columns:minmax(230px,.85fr) minmax(320px,1.35fr);gap:14px;margin-top:14px}
+.explanation-card{grid-column:1/-1}.explanation{background:#fff;border:0;min-height:0;padding:15px 20px;font-size:15px;line-height:1.6}.explanation strong{font-size:18px;color:#9e2432}.explanation p{max-width:95ch}
+.control{grid-template-columns:minmax(120px,1fr) minmax(100px,145px) 59px;padding:14px 0;font-size:13px;gap:8px}
+.controls .card{margin-bottom:14px}.controls h2{font-size:17px}
+.scenarios{display:flex;flex-direction:column;gap:12px;padding:12px}
+.group,.group.cool{background:#fff;border:1px solid #eadbd7;padding:12px;border-radius:12px}
+.group.cool{border-color:#cbdff7}.group h3{text-align:left;color:#af3541;font-size:17px}.group.cool h3{color:#1a57a0}
+.group small{text-align:left;color:#5e6a7d;font-size:12px;font-weight:500;margin:3px 0 10px}
+#right-buttons,#left-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.scenario{margin:0;min-height:53px;font-size:12px;line-height:1.3;gap:7px;padding:9px 8px;border:1px solid #e5d2d0}
+.cool .scenario{border-color:#d0e0f4}.scenario .symbol{font-size:15px;width:19px;min-width:19px;letter-spacing:0}
+.scenario[aria-pressed=true]{background:#b52c3a}.cool .scenario[aria-pressed=true]{background:#235ca6}
+.custom{margin:0 12px 12px;background:#f2f0fb;border-radius:8px;font-size:12px;padding:11px}
+.hint{margin:0 12px 16px;line-height:1.4}
+.control input[type=range]{-webkit-appearance:none;appearance:none;background:transparent;height:26px;min-width:0;margin:0;cursor:pointer;accent-color:var(--accent)}
+.control input[type=range]::-webkit-slider-runnable-track{height:7px;border-radius:20px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) var(--fill,50%),#dbe2ee var(--fill,50%),#dbe2ee 100%)}
+.control input[type=range]::-moz-range-track{height:7px;border-radius:20px;background:#dbe2ee}
+.control input[type=range]::-moz-range-progress{height:7px;border-radius:20px;background:var(--accent)}
+.control input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);border:3px solid #fff;box-shadow:0 1px 5px #1d355344;margin-top:-7px}
+.control input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--accent);border:3px solid white;box-shadow:0 1px 5px #1d355344}
+.control input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
+.value{font-size:14px;border-color:#d9e1ed}.points td{font-size:13px}
+@media(max-width:1150px){.layout{grid-template-columns:1fr}.controls{display:grid;grid-template-columns:1fr 1.3fr;gap:14px}.controls .card{margin:0}.control{grid-template-columns:minmax(120px,1fr) 150px 55px}}
+@media(max-width:720px){.top{padding:12px}.layout{padding:9px;gap:10px}.bottom,.controls{grid-template-columns:1fr}.control{grid-template-columns:minmax(120px,1fr) minmax(90px,1fr) 54px}#right-buttons,#left-buttons{grid-template-columns:1fr 1fr}}
+
+/* Readable scenario controls and aligned teaching labels */
+#right-buttons,#left-buttons{grid-template-columns:1fr;gap:9px}
+.scenario{font-size:16px;line-height:1.35;min-height:58px;padding:11px 13px;gap:11px;overflow-wrap:normal}
+.scenario .symbol{font-size:19px;width:28px;min-width:28px;letter-spacing:0}
+.group{padding:13px 12px 14px}.group h3{font-size:20px}.group small{font-size:14px;margin-bottom:12px}
+.controls h2{font-size:19px}.custom{font-size:14px}.hint{font-size:13px}
+@media(max-width:720px){#right-buttons,#left-buttons{grid-template-columns:1fr}.scenario{font-size:15px}}
+
+/* v11: presentation-focused single-screen desktop layout */
+@media (min-width: 1160px) and (min-height: 690px){
+ html,body{height:100%;overflow:hidden}
+ body{display:flex;flex-direction:column}
+ .top{flex:0 0 auto;padding:9px 19px}
+ .top h1{font-size:clamp(23px,2vw,33px)}
+ .top p{font-size:clamp(12px,.95vw,15px);margin-top:2px}
+ .layout{flex:1;min-height:0;width:100%;max-width:none;padding:9px 12px 11px;gap:12px;grid-template-columns:minmax(0,2.25fr) minmax(370px,1fr)}
+ .left{display:flex;flex-direction:column;min-height:0;gap:9px}
+ .chartbox{flex:1 1 58%;min-height:0;padding:0 5px;display:flex;align-items:center;justify-content:center}
+ #chart{height:100%;width:100%;aspect-ratio:auto;object-fit:contain}
+ .bottom{flex:0 1 35%;min-height:0;margin:0;display:grid;grid-template-columns:minmax(160px,.83fr) minmax(230px,1.27fr) minmax(230px,1.22fr);gap:9px}
+ .bottom .card{min-height:0;overflow:hidden}
+ .explanation-card{grid-column:auto}
+ .card h2{padding:7px 11px;font-size:clamp(15px,1.05vw,18px)}
+ .pad{padding:5px 8px}
+ .current table,.points table{font-size:clamp(12px,.92vw,15px)}
+ td,th{padding:clamp(4px,.52vh,7px) 5px}
+ .points tr{height:auto}.points td{font-size:clamp(11px,.88vw,14px)}.points th{font-size:clamp(11px,.86vw,14px)}
+ .foot{font-size:clamp(10px,.75vw,12px);line-height:1.25;margin:5px 3px}
+ .explanation{font-size:clamp(12px,.88vw,15px);line-height:1.33;padding:8px 11px;min-height:0}
+ .explanation strong{font-size:clamp(14px,1vw,17px);margin-bottom:3px}.explanation p{margin:4px 0}
+ .controls{display:flex;flex-direction:column;min-height:0;gap:9px}
+ .controls .card{margin:0;min-height:0}
+ .controls .card:first-child{flex:0 0 auto}
+ .controls .card:nth-child(2){flex:1 1 auto;display:flex;flex-direction:column}
+ .controls h2{font-size:clamp(16px,1.12vw,19px);padding:8px 12px}
+ .control{padding:clamp(7px,1vh,12px) 0;font-size:clamp(13px,.98vw,16px);grid-template-columns:minmax(110px,1fr) minmax(90px,135px) 55px;gap:6px}
+ .value{font-size:clamp(13px,.94vw,16px);padding:6px 1px}
+ .scenarios{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:9px;flex:1;min-height:0}
+ .group{padding:9px 8px;min-height:0;display:flex;flex-direction:column}
+ .group h3{font-size:clamp(17px,1.2vw,21px);margin:0}
+ .group small{font-size:clamp(12px,.86vw,14px);margin:3px 0 7px}
+ #right-buttons,#left-buttons{display:flex;flex-direction:column;gap:6px;flex:1;min-height:0}
+ .scenario{flex:1 1 auto;min-height:0;font-size:clamp(13px,.96vw,16px);line-height:1.18;padding:5px 7px;gap:5px;border-radius:9px}
+ .scenario .symbol{font-size:clamp(14px,1vw,18px);width:20px;min-width:20px}
+ .custom{margin:0 9px 7px;padding:6px 9px;font-size:13px}
+ .hint{display:none}
+}
+@media (min-width:1160px) and (max-height:850px){
+ .top{padding:5px 16px}.top h1{font-size:26px}.top p{font-size:12px}
+ .layout{padding:6px 9px;gap:9px}.left{gap:6px}.bottom{flex-basis:36%}
+ .controls{gap:6px}.control{padding:5px 0}.controls h2{padding:6px 10px}
+ .scenarios{padding:6px;gap:6px}.group{padding:6px}.group small{margin:2px 0 5px}
+ #right-buttons,#left-buttons{gap:4px}.scenario{padding:3px 5px;font-size:13px}
+ .custom{padding:4px;margin-bottom:5px}
+}
+@media (max-width:1159px){
+ .scenario{font-size:16px}
+}
+
+/* v12: reclaim unused lower-card space for the graph */
+@media (min-width:1160px) and (min-height:690px){
+ .left{gap:6px}
+ .bottom{
+   flex:0 0 auto;
+   height:auto;
+   align-items:stretch;
+   grid-template-columns:minmax(160px,.83fr) minmax(230px,1.27fr) minmax(230px,1.22fr);
+   gap:7px;
+ }
+ .bottom .card{height:auto;min-height:0}
+ .bottom .card h2{padding:5px 10px;font-size:clamp(15px,1.06vw,18px)}
+ .bottom .pad{padding:3px 7px 4px}
+ .bottom td,.bottom th{padding:3px 5px;line-height:1.16}
+ .bottom .current table,.bottom .points table{font-size:clamp(12px,.93vw,15px)}
+ .bottom .foot{margin:4px 2px 0;font-size:clamp(10px,.73vw,12px);line-height:1.13}
+ .bottom .explanation{padding:5px 10px;line-height:1.22;font-size:clamp(12px,.86vw,14px);min-height:0}
+ .bottom .explanation p{margin:3px 0}
+ .chartbox{flex:1 1 auto;min-height:0}
+ #chart{height:100%;width:100%;object-fit:contain}
+}
+@media (min-width:1160px) and (min-height:690px) and (max-height:850px){
+ .bottom td,.bottom th{padding:2px 4px}
+ .bottom .card h2{padding:4px 9px}
+ .bottom .explanation{font-size:12px;line-height:1.17;padding:4px 8px}
+ .bottom .foot{font-size:10px}
+}
+/* Temperature readout accommodates Celsius and Fahrenheit together. */
+.control:has(#s-temp){grid-template-columns:minmax(0,1fr) minmax(100px,1fr) 135px}
+.control:has(#s-temp) .value{font-size:13px;white-space:nowrap;padding-left:4px;padding-right:4px}
+.current td:last-child{white-space:nowrap}
+@media(max-width:700px){.control:has(#s-temp){grid-template-columns:minmax(0,1fr) minmax(80px,1fr) 125px}}
+
+/* v14: unified alignment and consistent typographic icons */
+.control{grid-template-columns:minmax(0,1fr) minmax(95px,135px) minmax(95px,125px);column-gap:9px}
+.control label{white-space:nowrap;line-height:1.2}
+.control .value{font-size:clamp(12px,.93vw,15px);font-variant-numeric:tabular-nums;white-space:nowrap;padding:7px 3px}
+.control:not(:has(#s-temp)){grid-template-columns:minmax(0,1fr) minmax(95px,135px) minmax(95px,125px)}
+.control:has(#s-temp){grid-template-columns:minmax(0,1fr) minmax(95px,135px) minmax(95px,125px)}
+.control:has(#s-temp) .value{font-size:clamp(11px,.88vw,14px);padding:7px 2px}
+.scenario{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;column-gap:9px;text-align:left;overflow-wrap:normal}
+.scenario .symbol{display:flex;align-items:center;justify-content:center;width:30px;min-width:30px;height:30px;line-height:1;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:800;letter-spacing:-.2px;border-radius:9px;background:#fff0ee;color:#a52630;flex:none}
+.cool .scenario .symbol{background:#e7f0ff;color:#1b579d}
+.scenario[aria-pressed=true] .symbol{background:#ffffffeb;color:#a52630}
+.cool .scenario[aria-pressed=true] .symbol{color:#1b579d}
+.scenario .scenario-label{display:block;min-width:0;flex:none;overflow-wrap:normal;line-height:1.25}
+@media (min-width:1160px) and (min-height:690px){
+ .control,.control:not(:has(#s-temp)),.control:has(#s-temp){grid-template-columns:minmax(0,1fr) minmax(85px,125px) 116px;gap:8px}
+ .scenario{grid-template-columns:26px minmax(0,1fr);gap:7px}
+ .scenario .symbol{width:26px;min-width:26px;height:26px;font-size:10px}
+ .scenario .scenario-label{font-size:clamp(12px,.91vw,15px)}
+}
+@media(max-width:1159px){.control,.control:not(:has(#s-temp)),.control:has(#s-temp){grid-template-columns:minmax(0,1fr) minmax(85px,125px) 116px}}
+@media(max-width:460px){.control,.control:not(:has(#s-temp)),.control:has(#s-temp){grid-template-columns:minmax(0,1fr) 85px 105px;gap:5px}.control label{font-size:12px}}
+</style></head><body>
+<header class="top"><div><h1>Oxyhemoglobin Dissociation Curve Simulator</h1><p>Explore how pH, temperature, PCO₂, and hemoglobin concentration influence oxygen binding, content, and delivery to tissues.</p></div><button class="reset" id="reset">⟳ Reset to Normal</button></header>
+<main class="layout"><section class="left"><div class="chartbox"><svg id="chart" viewBox="0 0 1060 645" role="img" aria-label="Interactive oxyhemoglobin dissociation graph, 0 to 140 mmHg oxygen partial pressure and 0 to 100 percent saturation"></svg></div>
+<div class="bottom"><section class="card current"><h2>Current Values</h2><div class="pad"><table><tbody><tr><td>pH</td><td id="t-ph"></td></tr><tr><td>Temperature</td><td id="t-temp"></td></tr><tr><td>PCO₂</td><td id="t-co2"></td></tr><tr><td>Hemoglobin</td><td id="t-hb"></td></tr></tbody></table></div></section>
+<section class="card points"><h2>Key Oxygenation Points</h2><div class="pad"><table><thead><tr><th>Location (PO₂)</th><th>Saturation (%)</th><th>O₂ Content<br>(mL/dL)</th></tr></thead><tbody><tr class="lung"><td id="lung-name"></td><td id="lung-sat"></td><td id="lung-content"></td></tr><tr class="rest"><td id="rest-name"></td><td id="rest-sat"></td><td id="rest-content"></td></tr><tr class="active"><td id="active-name"></td><td id="active-sat"></td><td id="active-content"></td></tr></tbody></table><div class="foot">Oxygen content represents hemoglobin-bound oxygen only (dissolved oxygen not included).</div></div></section>
+<section class="card explanation-card"><h2 class="red">Scenario Explanation</h2><div class="explanation"><strong id="scenario-name"></strong><p id="scenario-text"></p><p id="scenario-result"></p></div></section></div></section>
+<aside class="controls"><section class="card"><h2>Adjust Physiological Variables</h2><div id="control-list"></div></section>
+<section class="card"><h2>Preset Scenarios</h2><div class="scenarios"><div class="group"><h3>RIGHT SHIFT →</h3><small>Less affinity · Easier O₂ release</small><div id="right-buttons"></div></div><div class="group cool"><h3>← LEFT SHIFT</h3><small>More affinity · Holds O₂ tighter</small><div id="left-buttons"></div></div></div><div class="custom">⚙ Custom Combination<br><span style="font-weight:400">Move any slider to explore combined effects.</span></div><div class="hint">Select a scenario to update the curve and read the explanation below the graph.</div></section></aside></main>
+<script>
+const normal={ph:7.4,temp:37,co2:40,hb:15},state={...normal};let selected='exercise';
+const defs=[
+['ph','pH (Bohr effect)',7,7.8,.01,'#9a49bb'],['temp','Temperature',20,45,.5,'#e84436'],['co2','PCO₂ (mmHg)',20,80,1,'#1878e9'],['hb','Hemoglobin (g/dL)',8,20,.1,'#3f679a']];
+const scenarios={
+normal:{name:'Normal (Baseline)',v:{},detail:'At pH 7.40, 37°C (98.6°F), PCO₂ 40 mmHg, hemoglobin loads oxygen efficiently in the lungs while still releasing oxygen to tissues.'},
+exercise:{name:'Exercise (Active Muscle)',v:{ph:7.25,temp:40,co2:55},detail:'Multiple factors shift the curve to the right: ↑ Temperature (active muscle); ↑ PCO₂ (increased metabolic CO₂); ↓ pH (increased H⁺, Bohr effect). The lower PO₂ of active tissue also increases unloading by movement along the curve.'},
+fever:{name:'↑ Temperature',v:{temp:40},detail:'Increased temperature reduces hemoglobin affinity for oxygen. This shifts the curve right, increasing oxygen unloading at a given tissue PO₂.'},
+hypercapnia:{name:'↑ PCO₂',v:{co2:60},detail:'Higher PCO₂ shifts the curve right and facilitates unloading. CO₂ also commonly lowers pH in living tissue; here the controls are separated to demonstrate their individual effects.'},
+acidosis:{name:'↓ pH (Acidosis)',v:{ph:7.2},detail:'Increased hydrogen ion concentration decreases oxygen affinity through the Bohr effect, shifting the curve right and facilitating oxygen unloading.'},
+cold:{name:'↓ Temperature',v:{temp:30},detail:'Lower temperature shifts the curve left. Hemoglobin binds oxygen more tightly, making tissue unloading less favorable.'},
+hypocapnia:{name:'↓ PCO₂',v:{co2:25},detail:'Reduced carbon dioxide favors a left shift. Hyperventilation can also raise pH, further increasing hemoglobin oxygen affinity.'},
+alkalosis:{name:'↑ pH (Alkalosis)',v:{ph:7.55},detail:'Lower hydrogen ion concentration shifts the curve left, making oxygen release to tissues more difficult.'}};
+const left=[['cold','T','↓ Temperature'],['hypocapnia','CO₂','↓ PCO₂'],['alkalosis','pH','↑ pH (Alkalosis)']];
+const right=[['normal','O₂','Normal (Baseline)'],['exercise','EX','Exercise (Active Muscle)'],['fever','T','↑ Temperature'],['hypercapnia','CO₂','↑ PCO₂'],['acidosis','pH','↓ pH (Acidosis)']];
+const $=id=>document.getElementById(id);
+$('control-list').replaceChildren();
+defs.forEach(([id,label,min,max,step,color])=>{let row=document.createElement('div');row.className='control';row.style.setProperty('--accent',color);row.innerHTML=`<label for="s-${id}">${label}</label><input id="s-${id}" type="range" min="${min}" max="${max}" step="${step}" value="${state[id]}" aria-label="${label}"><output class="value" id="o-${id}"></output>`;$('control-list').appendChild(row);$('s-'+id).style.accentColor=color;$('s-'+id).addEventListener('input',e=>{state[id]=+e.target.value;selected='custom';render()})});
+function makeButtons(list,where){list.forEach(([id,icon,label])=>{const b=document.createElement('button');b.className='scenario';b.id='b-'+id;b.innerHTML=`<span class="symbol" aria-hidden="true">${icon}</span><span class="scenario-label">${label}</span>`;b.addEventListener('click',()=>choose(id));$(where).appendChild(b)})}
+$('right-buttons').replaceChildren();$('left-buttons').replaceChildren();
+makeButtons(right,'right-buttons');makeButtons(left,'left-buttons');
+function choose(id){Object.assign(state,normal,scenarios[id].v);selected=id;render()}
+$('reset').addEventListener('click',()=>choose('normal'));
+function p50(){return Math.max(12,Math.min(60,26.6*Math.pow(10,.46*(7.4-state.ph))*Math.exp(.024*(state.temp-37))*Math.pow(state.co2/40,.14)))}
+function sat(po,p=p50()){return 100*Math.pow(po,2.7)/(Math.pow(po,2.7)+Math.pow(p,2.7))}
+function content(po){return 1.34*state.hb*sat(po)/100}
+const NS='http://www.w3.org/2000/svg';function node(tag,attrs={},txt){const e=document.createElementNS(NS,tag);for(let k in attrs)e.setAttribute(k,attrs[k]);if(txt!==undefined)e.textContent=txt;$('chart').appendChild(e);return e}
+const x=po=>107+po/140*845,y=s=>585-s/100*510;
+function textAt(a,b,txt,attrs={}){return node('text',{x:a,y:b,fill:'#092f77',...attrs},txt)}
+function curve(p){let d='';for(let po=0;po<=140;po+=.5)d+=(po===0?'M':'L')+x(po).toFixed(2)+','+y(sat(po,p)).toFixed(2);return d}
+function callout(po,col,title,lines,bx,by,bw=155){let py=y(sat(po));node('line',{x1:x(po),y1:py,x2:x(po),y2:585,stroke:col,'stroke-dasharray':'8 7','stroke-width':1.6});node('circle',{cx:x(po),cy:py,r:10,fill:col,stroke:'#fff','stroke-width':2});node('rect',{x:bx,y:by,width:bw,height:78,rx:9,fill:'#fff9f6',stroke:col,'stroke-width':1.6});textAt(bx+bw/2,by+20,title,{'text-anchor':'middle',fill:col,class:'calloutTitle'});lines.forEach((l,i)=>textAt(bx+bw/2,by+40+i*16,l,{'text-anchor':'middle',fill:'#112448',class:'callout'}))}
+function renderGraph(){
+const svg=$('chart');svg.replaceChildren();
+node('rect',{x:107,y:75,width:845,height:510,fill:'#f8fbfe'});
+node('rect',{x:x(20),y:75,width:x(40)-x(20),height:510,fill:'#fce7c9',opacity:.65});
+node('rect',{x:x(60),y:75,width:x(100)-x(60),height:510,fill:'#d6f1dd',opacity:.72});
+for(let po=0;po<=140;po+=10)node('line',{x1:x(po),y1:75,x2:x(po),y2:585,stroke:'#dbe4ed','stroke-width':1});
+for(let s=0;s<=100;s+=10)node('line',{x1:107,y1:y(s),x2:952,y2:y(s),stroke:'#dbe4ed','stroke-width':1});
+node('line',{x1:107,y1:75,x2:107,y2:585,stroke:'#073e8c','stroke-width':2.5});node('line',{x1:107,y1:585,x2:952,y2:585,stroke:'#073e8c','stroke-width':2.5});node('line',{x1:952,y1:75,x2:952,y2:585,stroke:'#bf0012','stroke-width':2.5});
+for(let po=0;po<=140;po+=20)textAt(x(po),611,''+po,{'text-anchor':'middle',class:'tick'});
+for(let s=0;s<=100;s+=20){textAt(94,y(s)+6,''+s,{'text-anchor':'end',class:'tick'});textAt(964,y(s)+6,''+(s/5),{fill:'#bb0013',class:'tick'})}
+textAt(530,637,'PO₂ (mmHg)',{'text-anchor':'middle',class:'axis'});
+textAt(30,330,'Hemoglobin Oxygen Saturation (%)',{transform:'rotate(-90 30 330)','text-anchor':'middle',class:'axis'});
+textAt(1023,330,'Oxygen Content of Hemoglobin',{transform:'rotate(90 1023 330)','text-anchor':'middle',class:'axis',fill:'#bd0012'});
+textAt(1000,330,'(mL O₂ per dL blood)',{transform:'rotate(90 1000 330)','text-anchor':'middle','font-size':17,'font-weight':700,fill:'#bd0012'});
+node('rect',{x:x(20),y:8,width:x(40)-x(20),height:66,rx:9,fill:'#fff0dc'});textAt((x(20)+x(40))/2,30,'Tissue',{'text-anchor':'middle',class:'zoneLabel',fill:'#7f2600'});textAt((x(20)+x(40))/2,49,'Unloading Zone',{'text-anchor':'middle',class:'zoneLabel',fill:'#7f2600'});textAt((x(20)+x(40))/2,67,'(20 – 40 mmHg)',{'text-anchor':'middle','font-size':15,'font-weight':700,fill:'#7f2600'});
+node('rect',{x:x(60),y:8,width:x(100)-x(60),height:66,rx:9,fill:'#e4f7e9'});textAt((x(60)+x(100))/2,30,'Lung',{'text-anchor':'middle',class:'zoneLabel',fill:'#104a1d'});textAt((x(60)+x(100))/2,49,'Loading Zone',{'text-anchor':'middle',class:'zoneLabel',fill:'#104a1d'});textAt((x(60)+x(100))/2,67,'(60 – 100 mmHg)',{'text-anchor':'middle','font-size':15,'font-weight':700,fill:'#104a1d'});
+node('path',{d:curve(26.6),fill:'none',stroke:'#00419a','stroke-width':3,'stroke-dasharray':'10 7'});node('path',{d:curve(p50()),fill:'none',stroke:'#f01c22','stroke-width':3.5});
+callout(20,'#c61e2d','Active Muscle',[`PO₂ ≈ 20 mmHg`,`Sat: ${sat(20).toFixed(0)}%`,`Content: ${content(20).toFixed(1)} mL/dL`],240,415,160);
+callout(40,'#d87905','Resting Muscle',[`PO₂ ≈ 40 mmHg`,`Sat: ${sat(40).toFixed(0)}%`,`Content: ${content(40).toFixed(1)} mL/dL`],362,212,165);
+callout(97,'#0755bb','Lungs',[`PO₂ ≈ 97 mmHg`,`Sat: ${sat(97).toFixed(0)}%`,`Content: ${content(97).toFixed(1)} mL/dL`],705,113,158);
+node('rect',{x:590,y:505,width:350,height:67,rx:9,fill:'#fff',stroke:'#91a7c8','stroke-width':1.5});node('line',{x1:606,y1:527,x2:661,y2:527,stroke:'#00419a','stroke-width':3,'stroke-dasharray':'10 7'});textAt(676,532,'Normal (pH 7.4, 37°C / 98.6°F, PCO₂ 40 mmHg)',{'font-size':13,fill:'#071a46'});node('line',{x1:606,y1:552,x2:661,y2:552,stroke:'#f01c22','stroke-width':3});textAt(676,557,'Current condition',{'font-size':13,fill:'#071a46'});
+}
+function render(){
+defs.forEach(([id])=>{$('s-'+id).value=state[id];const def=defs.find(d=>d[0]===id);$('s-'+id).style.setProperty('--fill',((state[id]-def[2])/(def[3]-def[2])*100).toFixed(2)+'%');$('o-'+id).textContent=id==='ph'?state[id].toFixed(2):id==='temp'?state[id].toFixed(1)+'°C / '+(state[id]*9/5+32).toFixed(1)+'°F':id==='hb'?state[id].toFixed(1):state[id].toFixed(0)});
+$('t-ph').textContent=state.ph.toFixed(2);$('t-temp').textContent=state.temp.toFixed(1)+' °C / '+(state.temp*9/5+32).toFixed(1)+' °F';$('t-co2').textContent=state.co2.toFixed(0)+' mmHg';$('t-hb').textContent=state.hb.toFixed(1)+' g/dL';
+for(let [id,po] of [['lung',97],['rest',40],['active',20]]){$(id+'-name').textContent=(id==='lung'?'Lungs':id==='rest'?'Resting Muscle':'Active Muscle')+` (${po} mmHg)`;$(id+'-sat').textContent=sat(po).toFixed(0);$(id+'-content').textContent=content(po).toFixed(1)}
+const sc=scenarios[selected]||{name:'Custom Combination',detail:'Adjusting multiple factors changes hemoglobin oxygen affinity and oxygen unloading. Compare the blue normal curve with the red current curve.'};
+$('scenario-name').textContent=sc.name;$('scenario-text').textContent=sc.detail;let diff=p50()-26.6,dir=Math.abs(diff)<.3?'essentially unchanged':diff>0?'shifted right':'shifted left';$('scenario-result').textContent=`Result: The curve is ${dir}. A right shift means lower oxygen affinity and easier unloading to tissues at the same PO₂; a left shift means higher affinity and less unloading.`;
+Object.keys(scenarios).forEach(id=>{$('b-'+id).setAttribute('aria-pressed',id===selected?'true':'false')});renderGraph()
+}
+choose('normal');
+// Ensure each control appears only once, even if a browser restores older markup.
+const seenControls=new Set();document.querySelectorAll('#control-list .control').forEach(row=>{const key=row.querySelector('input')?.id;if(seenControls.has(key))row.remove();else seenControls.add(key)});
+</script></body></html>

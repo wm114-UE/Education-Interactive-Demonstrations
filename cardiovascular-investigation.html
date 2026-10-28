@@ -1,0 +1,144 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>EXSS 352 | Cardiovascular Investigation</title><style>
+:root{--ink:#233346;--muted:#5b6b79;--bg:#f7f6f2;--panel:white;--accent:#8c2440;--blue:#257caa;--green:#277c6c}*{box-sizing:border-box}body{margin:0;background:var(--bg);font:16px Calibri,Arial,sans-serif;color:var(--ink)}header{background:#61243a;color:white;padding:22px max(20px,calc((100vw - 1200px)/2))}header h1{margin:0 0 6px;font-size:27px}header p{margin:0;color:#f3dce5}main{max-width:1200px;margin:auto;padding:20px}nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}button,select,input{font:inherit}button{cursor:pointer;border:1px solid #bdc7ce;border-radius:8px;padding:10px 14px;background:white;color:var(--ink)}button.active{background:#61243a;color:white;border-color:#61243a}.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px}.panel{background:white;border:1px solid #d9dfe2;border-radius:12px;padding:17px;margin-bottom:15px}.panel h2,.panel h3{margin:0 0 12px}label{display:block;font-weight:bold;margin:15px 0 6px}input[type=range]{width:100%;accent-color:#8c2440}select{width:100%;padding:9px;border-radius:7px;border:1px solid #bac4ca}.hint{color:var(--muted);font-size:14px;line-height:1.45}.case{background:#f4e9ed;border-left:4px solid #8c2440;padding:12px;line-height:1.5}.graphs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.chart{border:1px solid #dce2e7;border-radius:9px;padding:10px;background:#fff;min-width:0}.chart h4{font-size:15px;margin:0}.chart svg{display:block;width:100%;height:auto}.chart button{font-size:12px;padding:5px 8px}.chart .detail{display:none;font-size:13px;color:var(--muted);margin-top:6px}.chart.expanded{grid-column:1/-1}.chart.expanded svg{max-height:370px}.chart.expanded .detail{display:block}.legend{display:flex;gap:15px;flex-wrap:wrap;font-size:13px;margin:10px 0}.swatch{display:inline-block;width:16px;height:3px;vertical-align:middle;margin-right:4px}.task{border-top:1px solid #ddd;padding-top:12px;margin-top:12px}.task p{margin:7px 0}.pill{display:inline-block;padding:3px 8px;border-radius:12px;background:#eaf1f5;font-size:12px}.buttons{display:flex;gap:7px;flex-wrap:wrap}.foot{font-size:13px;color:#596675;margin-top:18px}@media(max-width:900px){.layout{grid-template-columns:1fr}.graphs{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.graphs{grid-template-columns:1fr}}@media print{header,nav,.controls,.task button{display:none}.layout{display:block}.graphs{grid-template-columns:repeat(2,1fr)}}
+.chart{padding:13px;border:1px solid #d7dfe5;box-shadow:0 2px 8px rgba(35,51,70,.045);border-radius:10px}.chart-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}.chart-unit{font-size:11px;color:#60717e;text-align:right}.chart-actions{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-top:5px}.axis-tag{font-size:11px;color:#6a5060}.chart svg{overflow:visible}.chart.expanded{max-width:100%}.chart.expanded svg{width:100%;max-height:none;height:auto}.chart.expanded{grid-column:1/-1}.chart.expanded svg{max-width:850px;margin:auto}.graphs{gap:14px}.panel h2{letter-spacing:-.02em}.chart button{background:#f7f9fa}.case,.task{display:none}input[type=range]{touch-action:pan-y;cursor:ew-resize}input[type=range]::-webkit-slider-thumb{cursor:grab}</style></head><body><header><h1>EXSS 352 · Cardiovascular Physiology Investigation</h1><p>Interactive cardiovascular response figures · EXSS 352</p></header><main><nav id="tabs"></nav><div class="layout"><aside><section class="panel controls"><h2>Exercise conditions</h2><div id="controls"></div><p class="hint">Drag sliders or use arrow keys for incremental adjustments. Graph x-axes follow each exercise protocol.</p><button id="reset">Restore guided condition</button></section></aside><div><section class="panel"><h2 id="heading"></h2><div class="buttons" style="margin-top:12px"><button id="compare">Show comparison</button><button id="clearCompare">Hide comparison</button></div><div class="legend"><span><i class="swatch" style="background:#8c2440"></i>Current condition</span><span><i class="swatch" style="background:#257caa"></i>Comparison (dashed; aligned by relative bout progress)</span></div><div class="graphs" id="graphs"></div><p class="foot">Illustrative curves, not measured participant data. Dashed comparisons are aligned by relative bout progress when durations differ; do not interpret the two curves as sharing identical elapsed time. A break symbol indicates a truncated y-axis.</p></section></div></div></main><script>
+const definitions=[
+{id:'short',title:'1 · Short-term vs prolonged aerobic exercise',case:'Guided: compare continuous cycling at 65% maximum for 12 minutes with 75 minutes at the same relative intensity. Examine onset, steady state, and the possibility of cardiovascular drift.',min:30,max:89,base:65,dur:75,dmin:30,dmax:120,unit:'% maximum',comparison:{intensity:65,duration:12},prompts:['Compare HR, SV and cardiac output after the initial adjustment and later in prolonged exercise. Identify evidence of cardiovascular drift.','Explain the role of venous return, skin blood flow, sweating, temperature, and sympathetic regulation.','Independent challenge: change intensity to 80% while retaining a long duration. Predict how the initial exercise response and later drift could differ.'],note:'Drift begins after sustained exercise and is scenario-dependent; its magnitude varies with heat, hydration, fitness and workload. A 12-minute bout does not develop prolonged drift.'},
+{id:'incremental',title:'2 · Incremental exercise to maximum',case:'Guided: examine a progressive aerobic test from low intensity toward 100% of maximum. Follow the linked responses rather than interpreting one variable in isolation.',min:50,max:100,base:100,dur:15,dmin:10,dmax:20,unit:'% peak test intensity',comparison:{intensity:65,duration:15},prompts:['Explain why cardiac output can continue increasing after stroke volume approaches a plateau.','Explain how SBP can rise while TPR falls and why DBP changes comparatively little.','Independent challenge: compare a test ending at 65% versus 100%; use the Fick principle to explain differences in oxygen consumption.'],note:'Curves follow the textbook figure patterns: early SV rise then plateau, continued HR and Q̇ rise, nonlinear TPR decline, and increasing SBP/RPP. SV plateaus are not universal.'},
+{id:'static',title:'3 · Static (isometric) resistance exercise',case:'Guided: examine a sustained handgrip at 20% MVC for 3 minutes. Compare it with 50% MVC for a shorter tolerated duration. Focus on pressure regulation and recovery.',min:10,max:50,base:20,dur:3,dmin:1,dmax:5,unit:'% MVC',comparison:{intensity:50,duration:2},prompts:['Describe how HR, MAP, SV and TPR change during sustained contraction and immediately after release.','Explain the combined roles of vascular compression, central command, mechanoreflex and metaboreflex.','Independent challenge: test 10% MVC and 50% MVC. Why can arterial pressure rise substantially despite modest whole-body VO₂?'],note:'Pressor responses build during sustained contraction. TPR is calculated from MAP and Q̇; its direction can differ by protocol. As in the supplied handgrip figures, responses accumulate during the contraction; this graph focuses on the contraction period rather than recovery.'},
+{id:'dynamic',title:'4 · Dynamic resistance and short anaerobic effort',case:'Guided: compare repeated dynamic resistance exercise at 50% 1RM for 15 repetitions with 80% 1RM for 8 repetitions. Inspect set-level and repetition-level responses; then compare with a 30-second high-power effort.',min:40,max:95,base:50,dur:15,dmin:1,dmax:20,unit:'% 1RM',durationLabel:'Repetitions',comparison:{intensity:80,duration:8},prompts:['Compare HR, SBP and cardiac output across resistance conditions. Explain why load alone does not determine cardiovascular strain.','Use the repetition-level BP chart to describe the possible effect of cumulative effort and contraction–relaxation cycles.','Independent challenge: select the 30-second anaerobic comparison and explain how its response differs from a resistance set; include breathing/straining and recovery.'],note:'Set-level curves show cumulative strain and rhythmic BP fluctuations. Values do not represent peak intra-arterial pressures; breathing, muscle mass, tempo and fatigue matter.'}
+];
+let index=0,state={},comparison=false,anaerobic=false;const $=id=>document.getElementById(id);const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));const lerp=(a,b,t)=>a+(b-a)*t;const sigmoid=t=>1-Math.exp(-7*t);const val=(a,b,t)=>lerp(a,b,clamp(t,0,1));
+// Physiologically constrained, schematic curves. x=relative progress through selected protocol.
+const ease=t=>1-Math.exp(-Math.max(0,t));
+const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t)};
+function model(d,s){
+ const out={},n=181,I=s.intensity/100;
+ const sat=(t,tau)=>1-Math.exp(-Math.max(0,t)/tau);
+ const softplus=(z,k=4)=>Math.log1p(Math.exp(Math.max(-40,Math.min(40,k*z))))/k;
+ // C-infinity soft hinge: removes the sharp corner caused by max(0,t-start).
+ const ramp=(t,start,width)=>{const k=Math.max(.01,width*.28);const z=(t-start)/k;const soft=k*(z>35?z:Math.log1p(Math.exp(Math.max(-35,z))));const baseline=k*Math.log1p(Math.exp(Math.max(-35,-start/k)));const v=Math.max(0,soft-baseline);return v/(v+Math.max(.01,width))};
+ const envelope=(x)=>Math.sin(Math.PI*x)**2;
+ for(let j=0;j<n;j++){
+  const x=j/(n-1);let hr,sv,sbp,dbp,q,vo2,tpr,map,rpp;
+  if(d.id==='incremental'){
+   // A continuous graded exercise test. x represents attained % peak workload,
+   // not elapsed time. HR rises nearly linearly after an initially curved transition;
+   // SV rises early then plateaus (not universal); TPR falls steeply then tapers.
+   const w=x*I;
+   const early=sat(w,.095),progress=w;
+   hr=70+119*progress+7*early-2*ramp(w,.91,.13);
+   sv=72+56*sat(w,.19)-1.5*ramp(w,.87,.16);
+   q=hr*sv/1000;
+   sbp=116+86*progress+9*sat(w,.24)-1.5*ramp(w,.92,.16);
+   dbp=78-1.8*sat(w,.25)+1.4*progress;
+   map=dbp+(sbp-dbp)/3;
+   // Smooth physiological decline in vascular resistance emerges from
+   // progressively increasing Q relative to MAP; no prescribed straight line.
+   tpr=map/q;
+   const extraction=.055+.105*sat(w,.38)/sat(1,.38);
+   vo2=q*extraction;
+  } else if(d.id==='short'){
+   const t=x*s.duration,activation=sat(t,1.35);
+   // Smooth onset, quasi steady-state, then gradual drift only after sufficient time.
+   // Drift ramp is continuously differentiable, with no step at minute 20.
+   const durationGate=ramp(s.duration,25,12);
+   const thermal=ramp(t,24,28)*durationGate;
+   const dose=clamp((I-.30)/.55,.12,1.1);
+   hr=69+(34+78*I)*activation+(14+17*I)*thermal*dose;
+   sv=73+(15+44*I)*sat(t,1.8)-(11+15*I)*thermal*dose;
+   q=hr*sv/1000;
+   sbp=116+(28+70*I)*sat(t,1.45)+2.5*thermal;
+   dbp=78-2.0*sat(t,2.1)+1.2*thermal;
+   map=dbp+(sbp-dbp)/3;tpr=map/q;
+   vo2=q*(.055+.067*I);
+  } else if(d.id==='static'){
+   const t=x*s.duration;
+   // Isometric handgrip: no instantaneous jump. Early central command and
+   // mechanoreflex build smoothly, then a delayed metabolite-associated pressor
+   // component develops. Intensity alters rate and magnitude, not a discontinuity.
+   const early=sat(t,.55),late=ramp(t,.85,1.15);
+   const intensityDose=Math.pow(I/.5,1.15);
+   hr=70+(9+20*intensityDose)*early+(4+12*intensityDose)*late;
+   sv=78-(1.5+4*intensityDose)*early-(1.5+5*intensityDose)*late;
+   q=hr*sv/1000;
+   sbp=117+(10+27*intensityDose)*early+(6+29*intensityDose)*late;
+   dbp=76+(6+17*intensityDose)*early+(4+18*intensityDose)*late;
+   map=dbp+(sbp-dbp)/3;tpr=map/q;
+   vo2=.28+(.035+.045*I)*q;
+  } else {
+   // Dynamic resistance: a smooth cumulative response, with modest rhythmic
+   // contraction/relaxation oscillation superimposed on SBP/DBP, tapered to
+   // zero at onset. Oscillations are illustrative, not measured arterial peaks.
+   const reps=Math.max(1,s.duration),elapsed=x*reps;
+   const onset=sat(elapsed,1.8);
+   const fatigue=Math.pow(x,1.65)*(.55+.6*I)*clamp(reps/12,.3,1.4);
+   const wave=Math.sin(2*Math.PI*reps*x)*sat(elapsed,1.7);
+   hr=76+(15+35*I)*onset+(11+22*I)*fatigue;
+   sv=79+10*sat(elapsed,2.3)-(6+12*I)*fatigue;
+   q=hr*sv/1000;
+   sbp=118+(17+52*I)*onset+(15+45*I)*fatigue+(4+7*I)*wave;
+   dbp=77+(3+11*I)*onset+(4+10*I)*fatigue+(1.5+3*I)*wave;
+   map=dbp+(sbp-dbp)/3;tpr=map/q;
+   vo2=.3+q*(.045+.067*I);
+  }
+  rpp=hr*sbp/100;
+  for(const [k,v] of Object.entries({hr,sv,sbp,dbp,map,tpr,q,vo2,rpp})) (out[k]??=[]).push({x,y:v});
+ }
+ return out;
+}
+function anaerobicModel(){
+ const o={};for(let j=0;j<=100;j++){
+  const x=j/100,work=clamp(x/.7,0,1),recovery=clamp((x-.7)/.3,0,1);
+  const on=1-Math.exp(-4*work);
+  const hr=76+112*on-65*smooth(recovery),sv=76+32*on-12*smooth(recovery);
+  const q=hr*sv/1000,sbp=118+94*on-67*smooth(recovery),dbp=77+7*on-7*smooth(recovery);
+  const map=dbp+(sbp-dbp)/3,tpr=map/q,vo2=.3+q*(.07+.06*on),rpp=hr*sbp/100;
+  for(const [k,v] of Object.entries({hr,sv,sbp,dbp,map,tpr,q,vo2,rpp}))(o[k]??=[]).push({x,y:v});
+ }return o;
+}
+const series=[['hr','Heart rate','bpm'],['sv','Stroke volume','mL/beat'],['q','Cardiac output','L/min'],['sbp','Systolic BP','mmHg'],['dbp','Diastolic BP','mmHg'],['map','Mean arterial pressure','mmHg'],['tpr','Total peripheral resistance','mmHg·min/L'],['rpp','Rate-pressure product','HR × SBP / 100'],['vo2','Oxygen consumption','L/min']];
+function path(data,lo,hi){return data.map((p,i)=>(i?'L':'M')+(35+p.x*280).toFixed(1)+' '+(156-(p.y-lo)/(hi-lo)*127).toFixed(1)).join(' ')}
+function xAxisSpec(d,s){
+ if(d.id==='incremental')return {label:'Workload (% of maximum)',ticks:Array.from({length:5},(_,i)=>+(i*s.intensity/4).toFixed(1)),format:v=>Number.isInteger(v)?v+'%':v.toFixed(1)+'%',max:s.intensity};
+ if(d.id==='dynamic')return {label:'Repetition number',ticks:Array.from({length:5},(_,i)=>Math.round(i*s.duration/4)),format:v=>String(v),max:s.duration};
+ return {label:'Elapsed exercise time (min)',ticks:Array.from({length:5},(_,i)=>+(i*s.duration/4).toFixed(1)),format:v=>Number.isInteger(v)?String(v):v.toFixed(1),max:s.duration};
+}
+function chart(key,title,unit,main,comp,d,s){
+ let arr=main[key].map(z=>z.y).concat(comp?comp[key].map(z=>z.y):[]),mn=Math.min(...arr),mx=Math.max(...arr);
+ let range=mx-mn, step=range>100?25:range>40?10:range>15?5:range>6?2:range>2?1:range>.7?.25:.1;
+ let lo=Math.max(0,Math.floor((mn-range*.16)/step)*step),hi=Math.ceil((mx+range*.16)/step)*step;
+ if(hi<=lo)hi=lo+step*4;
+ let broken=lo>0, y0=154, y1=19, x0=49,x1=320;
+ let f=(v)=>Number.isInteger(v)?String(v):v.toFixed(v<1?2:1);
+ // Cubic Hermite interpolation with slope limiting prevents visible polygon corners
+ // while retaining the physiology model's actual trajectory and avoiding overshoot.
+ const xy=(points)=>{
+   const pts=points.map(p=>({x:x0+p.x*(x1-x0),y:y0-(p.y-lo)/(hi-lo)*(y0-y1)}));
+   if(pts.length<2)return '';
+   const slopes=pts.slice(1).map((p,i)=>(p.y-pts[i].y)/(p.x-pts[i].x));
+   const tangent=pts.map((p,i)=>{
+     if(i===0)return slopes[0];if(i===pts.length-1)return slopes[slopes.length-1];
+     const a=slopes[i-1],b=slopes[i];return a*b<=0?0:2*a*b/(a+b);
+   });
+   let d=`M${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)}`;
+   for(let i=0;i<pts.length-1;i++){
+     const a=pts[i],b=pts[i+1],h=b.x-a.x;
+     d+=` C${(a.x+h/3).toFixed(2)} ${(a.y+tangent[i]*h/3).toFixed(2)} ${(b.x-h/3).toFixed(2)} ${(b.y-tangent[i+1]*h/3).toFixed(2)} ${b.x.toFixed(2)} ${b.y.toFixed(2)}`;
+   }
+   return d;
+ };
+ let svg=`<svg viewBox="0 0 345 207" role="img" aria-label="${title} (${unit}) line graph, ${broken?'truncated y-axis marked with a break':'zero-based y-axis'}"><rect x="0.5" y="0.5" width="344" height="206" rx="5" fill="#fff"/><line x1="${x0}" y1="${y1}" x2="${x0}" y2="${y0}" stroke="#64717e" stroke-width="1.2"/><line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y0}" stroke="#64717e" stroke-width="1.2"/>`;
+ for(let i=0;i<5;i++){let y=y0-i*(y0-y1)/4,v=lo+(hi-lo)*i/4;svg+=`<line x1="${x0}" x2="${x1}" y1="${y}" y2="${y}" stroke="#e5e9ee" stroke-width=".8"/><text x="${x0-9}" y="${y+4}" text-anchor="end" font-size="11" fill="#3f4b56">${f(v)}</text>`;}
+ let axis=xAxisSpec(d,s);
+ for(let i=0;i<=4;i++){let x=x0+(x1-x0)*i/4;svg+=`<line x1="${x}" x2="${x}" y1="${y0}" y2="${y0+5}" stroke="#64717e"/><text x="${x}" y="${y0+19}" text-anchor="middle" font-size="10" fill="#3f4b56">${axis.format(axis.ticks[i])}</text>`;}
+ if(broken){svg+=`<rect x="${x0-5}" y="${y0-10}" width="10" height="15" fill="white"/><path d="M ${x0-5} ${y0-7} l 5 4 l -5 4 l 5 4" fill="none" stroke="#45515c" stroke-width="1.7"/>`;}
+ svg+=`<path d="${xy(main[key])}" fill="none" stroke="#8c2440" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>`;
+ if(comp)svg+=`<path d="${xy(comp[key])}" fill="none" stroke="#257caa" stroke-width="2.6" stroke-dasharray="7 5" stroke-linejoin="round" stroke-linecap="round"/>`;
+ svg+=`<text x="184" y="200" text-anchor="middle" font-size="11" fill="#44515c">${axis.label}</text></svg>`;
+ return `<article class="chart"><div class="chart-head"><h4>${title}</h4><span class="chart-unit">${unit}</span></div>${svg}<div class="chart-actions"><span class="axis-tag">${broken?'↯ Y-axis truncated':'Y-axis starts at 0'}</span><button class="enlarge" type="button">Enlarge</button></div></article>`;
+}
+function barChart(d,s){let labels=['Rest','Early','Mid','Late'];let data=model(d,s).sbp;let vals=[0,.2,.55,.95].map(x=>Math.round(data[Math.round(x*(data.length-1))].y)); let svg='<svg viewBox="0 0 330 190" role="img" aria-label="Illustrative systolic pressure by phase of a resistance set"><line x1="23" y1="152" x2="322" y2="152" stroke="#64717e"/><line x1="23" y1="12" x2="23" y2="152" stroke="#64717e"/><text x="19" y="154" text-anchor="end" font-size="10">0</text><text x="19" y="30" text-anchor="end" font-size="10">250</text>'; vals.forEach((v,i)=>{let h=v/250*122;svg+=`<rect x="${35+i*72}" y="${152-h}" width="42" height="${h}" fill="${i===0?'#a8b4bf':'#8c2440'}"/><text x="${56+i*72}" y="${147-h}" text-anchor="middle" font-size="11">${v}</text><text x="${56+i*72}" y="170" text-anchor="middle" font-size="10">${labels[i]}</text>`});svg+='</svg>';return `<article class="chart"><h4>Set progression · SBP <small class="hint">(schematic bars)</small></h4>${svg}<button class="enlarge" type="button">Enlarge / collapse</button></article>`}
+function updateGraphs(){let d=definitions[index],s=state[d.id],c=comparison?(anaerobic&&d.id==='dynamic'?anaerobicModel():model(d,d.comparison)):null;let m=model(d,s);$('graphs').innerHTML=series.map(([k,t,u])=>chart(k,t,u,m,c,d,s)).join('')+(d.id==='dynamic'?barChart(d,s):'');document.querySelectorAll('.enlarge').forEach(b=>b.onclick=()=>{let el=b.closest('.chart');el.classList.toggle('expanded');b.textContent=el.classList.contains('expanded')?'Collapse':'Enlarge'});}
+function render(){let d=definitions[index],s=state[d.id],c=comparison?(anaerobic&&d.id==='dynamic'?anaerobicModel():model(d,d.comparison)):null;let m=model(d,s);$('heading').textContent=d.title;$('tabs').innerHTML=definitions.map((x,i)=>`<button class="${i===index?'active':''}" data-tab="${i}">${x.title.split(' · ')[0]} ${['Aerobic duration','Incremental test','Isometric','Dynamic resistance'][i]}</button>`).join('');$('controls').innerHTML=`<label for="intensity">Intensity: <span id="ival">${s.intensity}</span> ${d.unit}</label><input id="intensity" type="range" step="1" min="${d.min}" max="${d.max}" value="${s.intensity}"><label for="duration">${d.durationLabel||'Duration'}: <span id="dval">${s.duration}</span> ${d.durationLabel?'reps':'min'}</label><input id="duration" type="range" step="1" min="${d.dmin}" max="${d.dmax}" value="${s.duration}"><p class="hint">Starting condition: ${d.base}${d.unit.startsWith('%')?'%':''} · ${d.dur} ${d.durationLabel?'repetitions':'minutes'}</p>`+(d.id==='dynamic'?'<label><input type="checkbox" id="anaerobic"> Compare with 30-second maximal cycling</label>':'');updateGraphs();$('compare').textContent='Show guided comparison';$('compare').disabled=comparison;$('clearCompare').disabled=!comparison;document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{index=+b.dataset.tab;comparison=false;anaerobic=false;render()});['intensity','duration'].forEach(id=>$(id).oninput=e=>{s[id==='intensity'?'intensity':'duration']=+e.target.value;$(id==='intensity'?'ival':'dval').textContent=e.target.value;updateGraphs()});if($('anaerobic')){$('anaerobic').checked=anaerobic;$('anaerobic').onchange=e=>{anaerobic=e.target.checked;comparison=anaerobic;render()}}}
+$('reset').onclick=()=>{let d=definitions[index];state[d.id]={intensity:d.base,duration:d.dur};comparison=false;anaerobic=false;render()};$('compare').onclick=()=>{comparison=true;render()};$('clearCompare').onclick=()=>{comparison=false;anaerobic=false;render()};definitions.forEach(d=>state[d.id]={intensity:d.base,duration:d.dur});render();
+</script></body></html>

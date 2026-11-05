@@ -1,0 +1,555 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>EXSS 352 | Exercise Physiology Jeopardy</title><style>
+:root{font-family:Arial,Calibri,sans-serif;color:#f7f8ff;background:#07122f}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#193c91,#07122f 72%);min-height:100vh}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.wrap{max-width:1460px;margin:auto;padding:16px 22px 35px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-size:clamp(22px,3.2vw,46px);font-weight:900;color:#ffcf4d;letter-spacing:2px;text-shadow:2px 3px #000}.sub{font-size:12px;color:#b9c8ed;letter-spacing:2px}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #5b81db;background:#163b85;color:white;border-radius:9px;padding:10px 14px;font-weight:700}.btn:hover{background:#2753aa}.btn.gold{background:#d9a832;color:#07122f;border-color:#f5d679}.btn.red{background:#80334b}.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin-top:18px}.cat{background:#17439d;color:white;min-height:94px;display:grid;place-items:center;text-align:center;font-size:clamp(11px,1.25vw,18px);font-weight:900;padding:7px;text-shadow:1px 2px #07122f}.tile{background:linear-gradient(150deg,#2158bd,#10398d);border:2px solid #3161ba;min-height:88px;display:grid;place-items:center;color:#ffd24e;font-weight:900;font-size:clamp(20px,3vw,39px);text-shadow:2px 3px #07152b;transition:transform .18s,background .18s}.tile:hover:not(:disabled){transform:scale(1.04);background:#3269d4}.tile.used{background:#0d2354;color:transparent;border-color:#152d61}.teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px;margin-top:17px}.team{background:#102b67;border:1px solid #4264ae;border-radius:9px;padding:9px;text-align:center}.team.active{border:2px solid #ffcf4d}.team .name{font-size:13px;font-weight:bold;overflow-wrap:anywhere}.team .score{font-size:25px;color:#ffcf4d;font-weight:900}.team .adjust{display:flex;gap:4px;justify-content:center;margin-top:6px}.mini{border:1px solid #5b81db;background:#244788;color:white;border-radius:5px;padding:3px 9px}.muted{color:#bac9ec}.note{font-size:12px;margin-top:10px;color:#c8d6fa}.overlay{position:fixed;inset:0;z-index:5;background:rgba(1,5,23,.91);display:flex;align-items:center;justify-content:center;padding:12px;overflow:auto}.panel{width:min(980px,100%);max-height:95vh;overflow:auto;border:3px solid #c8a54c;border-radius:18px;background:linear-gradient(145deg,#143b99,#071c59);padding:clamp(15px,3vw,34px);box-shadow:0 0 60px #020814;animation:appear .36s ease-out}@keyframes appear{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}.panel h2{text-align:center;color:#ffd24e;font-size:clamp(21px,3vw,35px);margin:4px 0 20px}.question{font-size:clamp(19px,2.6vw,31px);font-weight:700;text-align:center;line-height:1.32;margin:12px 0 22px}.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.option{background:#102e79;border:1px solid #7796db;border-radius:9px;padding:13px;min-height:68px;font-size:clamp(14px,1.4vw,18px);display:flex;gap:10px;align-items:center}.option strong{color:#ffd24e}.option.correct{background:#1c684f;border:2px solid #66f0b5}.option.dim{opacity:.48}.actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:18px}.timer{font-size:36px;color:#ffdc69;text-align:center;font-weight:900}.timerbar{height:8px;border-radius:6px;background:#0c245c;overflow:hidden;margin:8px 0}.timerfill{height:100%;background:#ffcf4d;transition:width .25s}.explain{background:#092253;border-left:5px solid #ffcf4d;padding:14px;margin-top:16px;line-height:1.5}.award{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:14px}.award label{display:flex;gap:8px;align-items:center;background:#0c2b6e;border-radius:8px;padding:10px}.fig{background:#f5f8ff;border-radius:12px;margin:12px auto;padding:8px;max-width:680px;color:#172c4e}.fig svg{display:block;width:100%;max-height:255px}.setupgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:5px;margin:8px 0}.field input,.field select{border-radius:6px;padding:9px;background:#f7faff;color:#091e49;border:0}.small{font-size:13px}.hidden{display:none!important}.special{font-size:clamp(30px,6vw,68px);text-align:center;color:#ffd24e;font-weight:900;animation:appear .7s}.finalbtn{margin-top:16px}.footer{margin-top:12px;color:#b8c7ea;font-size:12px}.badge{display:inline-block;background:#bd8f28;color:#061d4d;border-radius:12px;padding:3px 10px;font-size:12px;font-weight:bold}.scoreline{color:#ffe39a;text-align:center}.questionhead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}.tip{color:#d9e5ff;font-size:13px}.linklike{color:#ffe39a;text-decoration:underline;cursor:pointer}@media(max-width:650px){.wrap{padding:10px}.board{gap:3px}.cat{min-height:70px;font-size:9px;padding:3px}.tile{min-height:54px;font-size:17px}.options{grid-template-columns:1fr}.panel{padding:12px}.team .score{font-size:20px}}
+
+/* Studio Edition: refined presentation layer */
+:root{--gold:#ffd36c;--blue:#153caa;--edge:#5778db}
+body{background:radial-gradient(ellipse at 50% -15%,#2549a2 0%,#0a1a4c 48%,#030a22 100%);background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(105deg,transparent 0 105px,rgba(120,163,255,.022) 106px 108px);z-index:0}
+.wrap{position:relative;z-index:1;max-width:1600px}
+.brand{font-size:clamp(27px,4vw,58px);letter-spacing:.055em;background:linear-gradient(180deg,#fff7c6 0%,#ffd26b 48%,#bd8029 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 3px 8px #0009)}
+.sub{font-size:13px;letter-spacing:.19em}
+.board{gap:5px;padding:9px;border:2px solid #4e6ec2;border-radius:13px;background:#071439;box-shadow:0 18px 70px #0008, inset 0 0 24px #345ab344}
+.cat{background:linear-gradient(160deg,#234ec1,#123384);border:1px solid #5679cf;min-height:93px;box-shadow:inset 0 1px #8aa7f055;text-transform:uppercase;letter-spacing:.025em}
+.tile{background:linear-gradient(145deg,#245bc9 0%,#12358e 90%);border:1px solid #5c83db;min-height:90px;box-shadow:inset 0 1px 0 #a2baff44;font-family:Georgia,serif;letter-spacing:-.035em;transition:transform .22s,filter .22s,background .22s}
+.tile:hover:not(:disabled),.tile:focus-visible{transform:translateY(-3px) scale(1.025);filter:brightness(1.3);outline:2px solid var(--gold);z-index:2}
+.tile.used{background:#0a1b49;box-shadow:inset 0 0 25px #0006}
+.btn{transition:transform .15s,filter .15s;box-shadow:0 3px 9px #0004}.btn:hover{transform:translateY(-1px);filter:brightness(1.14)}
+.btn.gold{background:linear-gradient(#ffe29a,#d6a43e)}
+.team{background:linear-gradient(155deg,#153a88,#0c2357);border:1px solid #4d71c7;box-shadow:0 5px 15px #0004}
+.team .score{font-family:Georgia,serif;font-variant-numeric:tabular-nums}
+.panel{border:2px solid #d5af56;background:radial-gradient(ellipse at 50% 0%,#2556b9,#102c77 48%,#071641 100%);box-shadow:0 0 0 7px #091c4c,0 25px 90px #000b;animation:studioIn .38s cubic-bezier(.16,1,.3,1)}
+@keyframes studioIn{from{opacity:0;transform:translateY(28px) scale(.94);filter:blur(8px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+.option{background:#0b2b7d;border:1px solid #7199ec;box-shadow:inset 0 1px #a4bfff33}
+.option.correct{background:#135b53;border:2px solid #76f6c1;box-shadow:0 0 24px #1cdb8b55;animation:correctPop .5s ease}
+@keyframes correctPop{50%{transform:scale(1.015)}}
+.timer{font-variant-numeric:tabular-nums}.timer.warning{color:#ff8e8e;animation:pulse .7s infinite alternate}@keyframes pulse{to{opacity:.55}}
+.timerfill{background:linear-gradient(90deg,#e3a943,#fff3a7)}
+.explain{border-left-color:#ffe084;background:#071b4c}
+.award label{border:1px solid #466ab6;cursor:pointer}.award label:has(input:checked){border-color:#ffd36c;background:#244a91}
+.special{text-shadow:0 0 22px #f4c95d88;letter-spacing:.045em}
+.stage-progress{margin:12px 0 0;display:flex;align-items:center;gap:12px;color:#c5d5ff;font-size:13px}
+.stage-progress-track{height:7px;flex:1;border-radius:10px;background:#142b64;overflow:hidden}.stage-progress-track>div{height:100%;background:linear-gradient(90deg,#5b83ec,#ffd36c);transition:width .5s}
+.quick-controls{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.quick-controls button{border:1px solid #6a89d0;border-radius:20px;padding:5px 12px;background:#12377e;color:white;cursor:pointer}
+.podium{font-size:clamp(20px,2.5vw,31px);text-align:center;color:#ffdf8a;margin:10px 0 20px}
+@media(max-width:700px){.cat{min-height:64px}.tile{min-height:58px}.board{gap:3px;padding:4px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Studio Plus: clearer projected figures and animated answer reveal */
+.fig{max-width:850px!important;padding:15px!important;border:2px solid #b8d2ff;box-shadow:0 12px 32px rgba(0,0,0,.25)}
+.fig svg{max-height:350px!important;filter:drop-shadow(0 2px 2px rgba(0,0,0,.06))}
+.fig svg path[stroke-width="5"]{stroke-width:6;stroke-dasharray:1100;stroke-dashoffset:1100;animation:traceCurve 1.4s ease forwards}
+@keyframes traceCurve{to{stroke-dashoffset:0}}
+.option{transition:transform .35s ease,opacity .35s ease,background .35s ease,border-color .35s ease}
+.option.correct{transform:scale(1.025);box-shadow:0 0 0 3px rgba(117,255,194,.25),0 8px 26px rgba(0,0,0,.3);animation:answerPulse .8s ease}
+@keyframes answerPulse{0%{transform:scale(.97)}50%{transform:scale(1.045)}100%{transform:scale(1.025)}}
+.panel{animation:stageZoom .45s cubic-bezier(.16,1,.3,1)}
+@keyframes stageZoom{from{opacity:0;transform:perspective(800px) rotateX(7deg) scale(.88)}to{opacity:1;transform:none}}
+.reveal-banner{text-align:center;font-size:clamp(20px,3vw,34px);font-weight:900;letter-spacing:.08em;color:#ffdf75;padding:12px;background:linear-gradient(90deg,transparent,#1b4799,transparent);animation:stageZoom .45s ease}
+.fig-caption{font-size:12px;color:#304b78;text-align:center;margin:6px 0 0;font-weight:700}
+.fig-legend{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;color:#29436e;font-size:12px;margin:7px 0}
+.fig-legend i{display:inline-block;width:19px;height:4px;vertical-align:middle;margin-right:5px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){.fig svg path[stroke-width="5"],.option.correct,.panel,.reveal-banner{animation:none!important;stroke-dashoffset:0!important}}
+</style></head><body><div class="wrap"><header class="top"><div><div class="brand">EXSS 352 JEOPARDY!</div><div class="sub">EXAM 2 · COMPREHENSIVE TEAM REVIEW</div></div><div class="toolbar"><button class="btn" onclick="showSetup()">⚙ Teams & settings</button><button class="btn" onclick="exportState()">⇩ Export progress</button><button class="btn" onclick="document.getElementById('importFile').click()">⇧ Import progress</button><input type="file" id="importFile" accept="application/json" hidden onchange="importState(event)"><button class="btn red" onclick="resetGame()">Reset game</button></div></header><div class="stage-progress"><span id="progressLabel">ROUND PROGRESS</span><div class="stage-progress-track"><div id="progressFill" style="width:0%"></div></div><span id="progressCount">0/30</span></div><div id="board" class="board"></div><div id="teams" class="teams"></div><div class="toolbar" style="margin-top:15px"><button class="btn gold" onclick="openFinal()">★ FINAL JEOPARDY</button><button class="btn" onclick="toggleSound()" id="soundBtn">♪ Sound: Off</button><span id="status" class="muted" style="align-self:center"></span></div><div class="note">Click a value to open a question. All teams discuss simultaneously; the instructor records which teams were correct. Progress saves automatically in this browser. Export a backup before leaving class.</div><div class="footer">Instructor-authored practice questions aligned to uploaded EXSS 352 lectures and Exam 2 study guide. Figures are original schematic recreations for practice, not reproductions of textbook figures.</div></div><div id="overlay" class="overlay hidden"><div id="modal" class="panel"></div></div><script>const DATA={
+  "categories": [
+    "GAS EXCHANGE & O₂",
+    "RESPIRATORY EXERCISE",
+    "CARDIOVASCULAR CONTROL",
+    "CV EXERCISE RESPONSES",
+    "TRAINING ADAPTATIONS",
+    "INTEGRATED PHYSIOLOGY"
+  ],
+  "questions": [
+    {
+      "id": "0-0",
+      "category": 0,
+      "value": 200,
+      "question": "During external respiration, O₂ moves primarily in which direction?",
+      "options": [
+        "From systemic capillaries into muscle",
+        "From alveoli into pulmonary capillary blood",
+        "From pulmonary blood into alveoli",
+        "From venous blood into the atmosphere"
+      ],
+      "answer": 1,
+      "explanation": "Alveolar PO₂ exceeds pulmonary capillary PO₂, driving O₂ diffusion into blood.",
+      "figure": "",
+      "source": "Ch. 9 study guide"
+    },
+    {
+      "id": "0-1",
+      "category": 0,
+      "value": 400,
+      "question": "What best explains the sigmoid shape of the oxyhemoglobin dissociation curve?",
+      "options": [
+        "Cooperative O₂ binding to hemoglobin",
+        "O₂ transport exclusively in plasma",
+        "A linear increase in myoglobin affinity",
+        "Bicarbonate formation in red blood cells"
+      ],
+      "answer": 0,
+      "explanation": "Hemoglobin exhibits cooperative binding: binding one O₂ facilitates binding of additional O₂.",
+      "figure": "oxy",
+      "source": "Ch. 9 study guide"
+    },
+    {
+      "id": "0-2",
+      "category": 0,
+      "value": 600,
+      "question": "An exercising muscle has increased PCO₂ and decreased pH. What happens to hemoglobin?",
+      "options": [
+        "Left shift; reduced unloading",
+        "No shift; reduced O₂ extraction",
+        "Right shift; increased O₂ unloading",
+        "Higher affinity and reduced delivery"
+      ],
+      "answer": 2,
+      "explanation": "The Bohr effect shifts the curve right, lowering hemoglobin affinity and facilitating unloading at the tissues.",
+      "figure": "oxy",
+      "source": "Ch. 9 study guide"
+    },
+    {
+      "id": "0-3",
+      "category": 0,
+      "value": 800,
+      "question": "Arterial O₂ content is 20 mL/dL and mixed venous O₂ content is 5 mL/dL. What is the a–vO₂ difference?",
+      "options": [
+        "4 mL/dL",
+        "15 mL/dL",
+        "25 mL/dL",
+        "100 mL/dL"
+      ],
+      "answer": 1,
+      "explanation": "20 − 5 = 15 mL O₂ per 100 mL blood, consistent with high exercise extraction.",
+      "figure": "",
+      "source": "Ch. 12–13 slide 27"
+    },
+    {
+      "id": "0-4",
+      "category": 0,
+      "value": 1000,
+      "question": "A graph shows a sharp increase in ventilation at very low PaO₂ but a strong response to rising PaCO₂. Which interpretation is most accurate?",
+      "options": [
+        "Ventilation is insensitive to both gases",
+        "Low PaO₂ always suppresses ventilation",
+        "CO₂ is a strong ventilatory stimulus; hypoxic drive becomes pronounced at low PaO₂",
+        "O₂ and CO₂ affect ventilation identically at every partial pressure"
+      ],
+      "answer": 2,
+      "explanation": "Ventilatory control is highly responsive to CO₂; hypoxic stimulation becomes especially pronounced when arterial PO₂ is substantially reduced.",
+      "figure": "ventdrive",
+      "source": "Ch. 9 study guide"
+    },
+    {
+      "id": "1-0",
+      "category": 1,
+      "value": 200,
+      "question": "At the onset of constant-load exercise, which pair generally increases to raise minute ventilation?",
+      "options": [
+        "Tidal volume and breathing frequency",
+        "Residual volume and vital capacity",
+        "Only arterial O₂ saturation",
+        "Only respiratory exchange ratio"
+      ],
+      "answer": 0,
+      "explanation": "Minute ventilation equals tidal volume × breathing frequency; both generally rise at exercise onset.",
+      "figure": "",
+      "source": "Ch. 10 slide 4"
+    },
+    {
+      "id": "1-1",
+      "category": 1,
+      "value": 400,
+      "question": "During prolonged constant-load exercise, ventilation may drift upward despite unchanged external workload. Which explanation is most plausible?",
+      "options": [
+        "All metabolic activity stops",
+        "Increasing thermal and physiological strain",
+        "The lungs stop exchanging CO₂",
+        "Breathing frequency must fall"
+      ],
+      "answer": 1,
+      "explanation": "Prolonged exercise can increase ventilatory drive with thermal and other physiological adjustments, even at fixed workload.",
+      "figure": "respdrift",
+      "source": "Ch. 10 slide 7"
+    },
+    {
+      "id": "1-2",
+      "category": 1,
+      "value": 600,
+      "question": "Which pattern most strongly suggests exercise-induced arterial hypoxemia (EIAH)?",
+      "options": [
+        "Stable SaO₂ and small A–aPO₂ difference",
+        "Higher SaO₂ and falling A–aPO₂ difference",
+        "Falling SaO₂ with widened A–aPO₂ difference",
+        "Higher venous O₂ extraction alone"
+      ],
+      "answer": 2,
+      "explanation": "EIAH features impaired arterial oxygenation, often accompanied by a widened alveolar–arterial PO₂ difference.",
+      "figure": "eiah",
+      "source": "Ch. 10 slides 11–12"
+    },
+    {
+      "id": "1-3",
+      "category": 1,
+      "value": 800,
+      "question": "Fatigued respiratory muscles can reduce active-limb blood flow through which mechanism?",
+      "options": [
+        "Respiratory muscle metaboreflex and sympathetic vasoconstriction",
+        "Immediate disappearance of cardiac output",
+        "Complete shutdown of alveolar ventilation",
+        "Inhibition of all peripheral afferent activity"
+      ],
+      "answer": 0,
+      "explanation": "Metabolite-sensitive respiratory afferents can increase sympathetic vasoconstrictor activity in exercising limbs.",
+      "figure": "",
+      "source": "Ch. 10 slide 12"
+    },
+    {
+      "id": "1-4",
+      "category": 1,
+      "value": 1000,
+      "question": "During intense exercise, excessive positive expiratory intrathoracic pressure can have what effect?",
+      "options": [
+        "Always increase venous return",
+        "Reduce venous return, SV, and potentially Q̇",
+        "Increase SV without limit",
+        "Eliminate respiratory muscle work"
+      ],
+      "answer": 1,
+      "explanation": "Positive intrathoracic pressure can impede venous return and filling, lowering stroke volume and potentially cardiac output.",
+      "figure": "pressure",
+      "source": "Ch. 10 slide 13"
+    },
+    {
+      "id": "2-0",
+      "category": 2,
+      "value": 200,
+      "question": "What is the earliest major autonomic contributor to the rapid HR rise at exercise onset?",
+      "options": [
+        "Increased vagal activity",
+        "Parasympathetic (vagal) withdrawal",
+        "Immediate loss of sympathetic tone",
+        "A large rise in blood lactate"
+      ],
+      "answer": 1,
+      "explanation": "Central command and rapid vagal withdrawal can raise HR before significant metabolite accumulation.",
+      "figure": "",
+      "source": "Ch. 11 slide 6"
+    },
+    {
+      "id": "2-1",
+      "category": 2,
+      "value": 400,
+      "question": "By the Frank–Starling mechanism, increased end-diastolic volume generally causes what?",
+      "options": [
+        "Reduced ventricular stretch and SV",
+        "Increased stroke volume via greater myocardial fiber stretch",
+        "No change in ventricular ejection",
+        "An immediate fall in venous return"
+      ],
+      "answer": 1,
+      "explanation": "Greater ventricular filling increases preload and, within physiological limits, increases force of contraction and SV.",
+      "figure": "frank",
+      "source": "Ch. 11 slide 3"
+    },
+    {
+      "id": "2-2",
+      "category": 2,
+      "value": 600,
+      "question": "During dynamic exercise, why can blood flow increase in active muscle despite sympathetic activation?",
+      "options": [
+        "Functional sympatholysis and local metabolic vasodilation",
+        "Total cessation of sympathetic output",
+        "Complete closure of local arterioles",
+        "A large decrease in muscle metabolism"
+      ],
+      "answer": 0,
+      "explanation": "Local metabolites and vasodilatory signaling attenuate sympathetic vasoconstriction in active muscle.",
+      "figure": "",
+      "source": "Ch. 11 slides 10–11"
+    },
+    {
+      "id": "2-3",
+      "category": 2,
+      "value": 800,
+      "question": "Cardiac output rises while TPR falls. Which blood-pressure response is most typical during dynamic aerobic exercise?",
+      "options": [
+        "MAP necessarily falls to zero",
+        "MAP rises modestly because flow and resistance change together",
+        "MAP equals HR alone",
+        "Diastolic pressure must rise as much as systolic"
+      ],
+      "answer": 1,
+      "explanation": "MAP reflects interaction between cardiac output and vascular resistance; increased Q̇ is partly offset by reduced TPR.",
+      "figure": "flow",
+      "source": "Ch. 11 slides 8–13"
+    },
+    {
+      "id": "2-4",
+      "category": 2,
+      "value": 1000,
+      "question": "Which combination best supports venous return during exercise?",
+      "options": [
+        "Muscle pump, respiratory pump, and venoconstriction",
+        "Arterial vasodilation alone",
+        "Decreased venous tone and no muscle contraction",
+        "Complete suppression of intrathoracic pressure changes"
+      ],
+      "answer": 0,
+      "explanation": "The skeletal muscle pump, respiratory pump, and sympathetic venoconstriction help mobilize venous blood and preserve preload.",
+      "figure": "",
+      "source": "Ch. 11 slide 12"
+    },
+    {
+      "id": "3-0",
+      "category": 3,
+      "value": 200,
+      "question": "If HR = 150 beats/min and SV = 100 mL/beat, what is cardiac output?",
+      "options": [
+        "1.5 L/min",
+        "10 L/min",
+        "15 L/min",
+        "150 L/min"
+      ],
+      "answer": 2,
+      "explanation": "Q̇ = HR × SV = 150 × 100 = 15,000 mL/min = 15 L/min.",
+      "figure": "",
+      "source": "Ch. 12–13 slide 13"
+    },
+    {
+      "id": "3-1",
+      "category": 3,
+      "value": 400,
+      "question": "During incremental dynamic exercise, which combination is generally expected?",
+      "options": [
+        "HR decreases and Q̇ decreases",
+        "HR and Q̇ increase while TPR generally decreases",
+        "SV must fall to zero",
+        "SBP and HR both remain fixed"
+      ],
+      "answer": 1,
+      "explanation": "Progressively increasing metabolic demand raises HR and Q̇; vasodilation in active muscle generally reduces TPR.",
+      "figure": "increment",
+      "source": "Ch. 12–13 slides 7–23"
+    },
+    {
+      "id": "3-2",
+      "category": 3,
+      "value": 600,
+      "question": "During prolonged constant-load exercise in the heat, HR rises as SV falls. What is this called?",
+      "options": [
+        "Frank–Starling enhancement",
+        "Cardiovascular drift",
+        "Training bradycardia",
+        "Reactive hyperemia"
+      ],
+      "answer": 1,
+      "explanation": "Cardiovascular drift is associated with thermal strain, sweating/plasma volume loss, reduced preload/SV, and compensatory HR increase.",
+      "figure": "drift",
+      "source": "Ch. 12–13 slide 31"
+    },
+    {
+      "id": "3-3",
+      "category": 3,
+      "value": 800,
+      "question": "An athlete has HR = 160 beats/min and SBP = 180 mmHg. What is rate-pressure product?",
+      "options": [
+        "340",
+        "2,880",
+        "28,800",
+        "160"
+      ],
+      "answer": 2,
+      "explanation": "RPP = HR × SBP = 160 × 180 = 28,800, an indirect indicator of myocardial O₂ demand.",
+      "figure": "",
+      "source": "Ch. 12–13 slide 22"
+    },
+    {
+      "id": "3-4",
+      "category": 3,
+      "value": 1000,
+      "question": "Compared with dynamic aerobic exercise, sustained high-intensity static contraction typically causes what?",
+      "options": [
+        "A predominantly pressure-driven response with increased BP",
+        "A complete absence of sympathetic activation",
+        "Universal reductions in SBP and DBP",
+        "Unrestricted perfusion during strong contraction"
+      ],
+      "answer": 0,
+      "explanation": "Muscle compression and the exercise pressor/metaboreflex contribute to a pressure-driven response in static exercise.",
+      "figure": "static",
+      "source": "Ch. 12–13 slides 33–36"
+    },
+    {
+      "id": "4-0",
+      "category": 4,
+      "value": 200,
+      "question": "At the same absolute submaximal workload after endurance training, which pattern is most likely?",
+      "options": [
+        "Higher HR and lower SV",
+        "Lower HR, higher SV, similar Q̇",
+        "Lower HR and zero Q̇",
+        "No cardiovascular adaptations"
+      ],
+      "answer": 1,
+      "explanation": "After training, reduced HR can be offset by increased SV, leaving Q̇ similar at a fixed absolute workload.",
+      "figure": "trained",
+      "source": "Ch. 12–13 slides 8, 11, 16"
+    },
+    {
+      "id": "4-1",
+      "category": 4,
+      "value": 400,
+      "question": "Which training principle requires matching the energy system and modality to the performance goal?",
+      "options": [
+        "Specificity",
+        "Reversibility",
+        "Maintenance",
+        "Detraining"
+      ],
+      "answer": 0,
+      "explanation": "Specificity means adaptations depend on the training stimulus, energy system, and muscle groups involved.",
+      "figure": "",
+      "source": "Ch. 5 slides 3–4"
+    },
+    {
+      "id": "4-2",
+      "category": 4,
+      "value": 600,
+      "question": "Which pair best identifies central and peripheral contributors to improved VO₂max?",
+      "options": [
+        "Central: sweat sodium; peripheral: heart size",
+        "Central: maximal Q̇; peripheral: a–vO₂ difference",
+        "Central: respiratory frequency only; peripheral: resting BP",
+        "Central: myoglobin only; peripheral: ventricular filling"
+      ],
+      "answer": 1,
+      "explanation": "The Fick principle links VO₂max to maximal cardiac output (central) and oxygen extraction (peripheral).",
+      "figure": "fick",
+      "source": "Ch. 12–13 slides 14, 30"
+    },
+    {
+      "id": "4-3",
+      "category": 4,
+      "value": 800,
+      "question": "What is the likely effect of endurance training on HR, SV, and TPR at the same submaximal workload?",
+      "options": [
+        "HR rises, SV falls, TPR must rise",
+        "HR falls, SV rises, and vascular regulation improves",
+        "HR and SV both become zero",
+        "Maximal HR must increase markedly"
+      ],
+      "answer": 1,
+      "explanation": "Endurance training generally lowers submaximal HR and increases SV; vascular adaptations improve conductance, especially at high exercise demand.",
+      "figure": "trained",
+      "source": "Ch. 12–13 slides 8, 11, 21"
+    },
+    {
+      "id": "4-4",
+      "category": 4,
+      "value": 1000,
+      "question": "Which statement correctly distinguishes tapering from detraining?",
+      "options": [
+        "Both require complete cessation for months",
+        "Tapering reduces load to promote recovery while preserving fitness; detraining reverses adaptations",
+        "Tapering always eliminates performance",
+        "Detraining increases aerobic capacity indefinitely"
+      ],
+      "answer": 1,
+      "explanation": "A taper is planned load reduction before competition; detraining follows insufficient or discontinued stimulus and reverses adaptations.",
+      "figure": "",
+      "source": "Ch. 5 slides 8–9, 19"
+    },
+    {
+      "id": "5-0",
+      "category": 5,
+      "value": 200,
+      "question": "In humid heat, why can sweating become less effective at cooling the body?",
+      "options": [
+        "Sweat cannot be produced",
+        "A reduced vapor-pressure gradient limits evaporation",
+        "Radiation stops existing",
+        "Muscle heat production becomes zero"
+      ],
+      "answer": 1,
+      "explanation": "High relative humidity reduces the evaporative gradient; sweating only cools effectively when sweat evaporates.",
+      "figure": "",
+      "source": "Ch. 14 slides 4, 10"
+    },
+    {
+      "id": "5-1",
+      "category": 5,
+      "value": 400,
+      "question": "Which response is expected after heat acclimatization at the same exercise workload?",
+      "options": [
+        "Higher HR and later sweating onset",
+        "Lower HR, earlier/more effective sweating, expanded plasma volume",
+        "No change in heat regulation",
+        "Higher sweat sodium concentration as a universal adaptation"
+      ],
+      "answer": 1,
+      "explanation": "Heat acclimatization expands plasma volume, improves sweating responses, and typically reduces HR at a fixed heat-exercise load.",
+      "figure": "",
+      "source": "Ch. 14 slides 19–21"
+    },
+    {
+      "id": "5-2",
+      "category": 5,
+      "value": 600,
+      "question": "An endurance-trained athlete exercises intensely and develops reduced SaO₂. Which interaction is most relevant?",
+      "options": [
+        "Pulmonary gas exchange can become limiting despite strong CV and muscular adaptations",
+        "Training removes all respiratory limitations",
+        "Muscle O₂ extraction must become zero",
+        "High cardiac output guarantees normal arterial saturation"
+      ],
+      "answer": 0,
+      "explanation": "In some highly trained athletes, pulmonary exchange limitations (EIAH) can coexist with high cardiac output and muscle extraction.",
+      "figure": "eiah",
+      "source": "Ch. 10 slides 11, 15"
+    },
+    {
+      "id": "5-3",
+      "category": 5,
+      "value": 800,
+      "question": "During prolonged exercise in the heat, dehydration reduces SV. Which combination best explains the compensatory response?",
+      "options": [
+        "Lower plasma volume → lower venous return → lower SV → higher HR",
+        "Higher plasma volume → lower HR → no thermal strain",
+        "Reduced sweating → infinite venous return",
+        "Increased TPR always replaces all lost Q̇"
+      ],
+      "answer": 0,
+      "explanation": "Sweating and heat-related fluid shifts reduce preload; HR often rises to help maintain cardiac output as SV falls.",
+      "figure": "drift",
+      "source": "Ch. 12–13 slide 31; Ch. 14 slides 16–17"
+    },
+    {
+      "id": "5-4",
+      "category": 5,
+      "value": 1000,
+      "question": "A runner shows increased Q̇ and a–vO₂ difference at maximal exercise after training. What follows from the Fick principle?",
+      "options": [
+        "VO₂max must decrease",
+        "VO₂max can increase through greater O₂ delivery and extraction",
+        "Ventilation must cease",
+        "O₂ uptake is independent of blood flow"
+      ],
+      "answer": 1,
+      "explanation": "VO₂ = Q̇ × a–vO₂ difference. Increasing maximal flow and extraction increases maximal O₂ consumption.",
+      "figure": "fick",
+      "source": "Ch. 12–13 slides 14, 30"
+    }
+  ]
+};
+let state;const KEY='exss352-jeopardy-v1';const defaults=()=>({teams:Array.from({length:16},(_,i)=>({name:'Team '+(i+1),score:0})),used:[],duration:40,sound:false,daily:['1-3','3-3'],finalDone:false,history:[]});function load(){try{const s=JSON.parse(localStorage.getItem(KEY));state=s&&Array.isArray(s.teams)&&Array.isArray(s.used)?{...defaults(),...s}:defaults()}catch(e){state=defaults()}}function save(){localStorage.setItem(KEY,JSON.stringify(state))}const $=id=>document.getElementById(id);const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function render(){let h='';DATA.categories.forEach(c=>h+='<div class="cat">'+esc(c)+'</div>');for(let row=0;row<5;row++)for(let c=0;c<6;c++){let id=c+'-'+row,u=state.used.includes(id);h+=`<button class="tile ${u?'used':''}" ${u?'disabled':''} onclick="openQuestion('${id}')">${u?'': '$'+((row+1)*200)}</button>`} $('board').innerHTML=h;$('teams').innerHTML=state.teams.map((t,i)=>`<div class="team"><div class="name">${esc(t.name)}</div><div class="score">${t.score<0?'−$'+Math.abs(t.score):'$'+t.score}</div><div class="adjust"><button class="mini" title="Subtract 200" onclick="adjust(${i},-200)">−200</button><button class="mini" title="Add 200" onclick="adjust(${i},200)">+200</button></div></div>`).join('');$('status').textContent=state.used.length+' / 30 questions completed';$('progressFill').style.width=(state.used.length/30*100)+'%';$('progressCount').textContent=state.used.length+'/30';$('soundBtn').textContent='♪ Sound: '+(state.sound?'On':'Off')};function adjust(i,n){state.teams[i].score+=n;save();render()}function overlay(html){$('modal').innerHTML=html;$('overlay').classList.remove('hidden')}function closeOverlay(){$('overlay').classList.add('hidden');stopTimer()}function showSetup(){overlay(`<h2>Game setup</h2><p class="tip">Rename teams and choose how many participate. Changes save automatically.</p><div class="setupgrid"><div class="field"><label>Number of teams (2–24)</label><input id="teamCount" type="number" min="2" max="24" value="${state.teams.length}"></div><div class="field"><label>Question timer (seconds)</label><input id="seconds" type="number" min="10" max="180" value="${state.duration}"></div></div><div id="names" class="setupgrid">${state.teams.map((t,i)=>`<div class="field"><label>Team ${i+1}</label><input class="teamname" value="${esc(t.name)}"></div>`).join('')}</div><div class="actions"><button class="btn gold" onclick="applySetup()">Save settings</button><button class="btn" onclick="closeOverlay()">Cancel</button></div>`)}function applySetup(){let n=Math.min(24,Math.max(2,parseInt($('teamCount').value)||16));let names=[...document.querySelectorAll('.teamname')].map(x=>x.value.trim());state.teams=Array.from({length:n},(_,i)=>state.teams[i]?{...state.teams[i],name:names[i]||('Team '+(i+1))}:{name:'Team '+(i+1),score:0});state.duration=Math.min(180,Math.max(10,parseInt($('seconds').value)||40));save();closeOverlay();render()};let current=null,revealed=false,remaining=0,interval=null,timerStarted=false;function stopTimer(){if(interval)clearInterval(interval);interval=null}function beep(){if(!state.sound)return;try{let ac=new(window.AudioContext||window.webkitAudioContext)(),o=ac.createOscillator(),g=ac.createGain();o.frequency.value=600;o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(.08,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.2);o.start();o.stop(ac.currentTime+.21)}catch(e){}}function toggleSound(){state.sound=!state.sound;save();render()}
+function setQuestionTime(n){stopTimer();remaining=n;state.duration=n;save();updateTimer();if($('startTimer'))$('startTimer').disabled=false}function startTimer(){if(interval)return;timerStarted=true;interval=setInterval(()=>{remaining=Math.max(0,remaining-1);updateTimer();if(remaining===0){stopTimer();beep()}},1000);$('startTimer').disabled=true}function updateTimer(){if($('timerNum')){$('timerNum').textContent=remaining+'s';$('timerNum').classList.toggle('warning',remaining<=10)}if($('timerFill'))$('timerFill').style.width=(100*remaining/state.duration)+'%'}
+function openQuestion(id){current=DATA.questions.find(x=>x.id===id);if(!current||state.used.includes(id))return;revealed=false;remaining=state.duration;timerStarted=false;stopTimer();if(state.daily.includes(id)){dailyIntro();return}questionScreen()}
+function dailyIntro(){overlay(`<div class="special">★ DAILY DOUBLE ★</div><p style="text-align:center">All teams can answer. Each team earns or loses <strong>double the displayed value</strong> for this question.</p><div class="actions"><button class="btn gold" onclick="questionScreen()">Reveal question</button></div>`);beep()}
+function questionScreen(){let q=current;overlay(`<div class="questionhead"><span class="badge">${esc(DATA.categories[q.category])}</span><strong style="color:#ffdc69">$${q.value}${state.daily.includes(q.id)?' · DOUBLE POINTS':''}</strong></div><div class="question">${esc(q.question)}</div>${figure(q.figure)}<div class="options">${q.options.map((o,i)=>`<div class="option" id="opt${i}"><strong>${'ABCD'[i]}.</strong><span>${esc(o)}</span></div>`).join('')}</div><div class="timerbar"><div class="timerfill" id="timerFill"></div></div><div class="timer" id="timerNum">${remaining}s</div><div class="quick-controls"><span class="tip">Question time:</span><button onclick="setQuestionTime(20)">20s</button><button onclick="setQuestionTime(40)">40s</button><button onclick="setQuestionTime(60)">60s</button><button onclick="setQuestionTime(90)">90s</button></div><div class="actions"><button class="btn" id="startTimer" onclick="startTimer()">▶ Start timer</button><button class="btn" onclick="stopTimer()">Ⅱ Pause</button><button class="btn gold" id="revealBtn" onclick="revealAnswer()">★ Reveal correct answer</button><button class="btn red" onclick="closeOverlay()">Back to board (unplayed)</button></div>`);updateTimer()}
+function revealAnswer(){if(revealed)return;stopTimer();revealed=true;let q=current;let btn=$('revealBtn');if(btn)btn.disabled=true;document.querySelectorAll('.option').forEach((el,i)=>el.classList.add(i===q.answer?'correct':'dim'));let val=q.value*(state.daily.includes(q.id)?2:1);$('modal').insertAdjacentHTML('beforeend',`<div class="reveal-banner">★ THE CORRECT ANSWER IS ${'ABCD'[q.answer]} ★</div><div class="actions"><button class="btn gold" onclick="showInstructorExplanation()">▶ Show explanation & team scoring</button></div>`);beep()}
+function showInstructorExplanation(){if(document.getElementById('instructorExplain'))return;let q=current;let val=q.value*(state.daily.includes(q.id)?2:1);$('modal').insertAdjacentHTML('beforeend',`<div id="instructorExplain" class="explain"><strong>Correct: ${'ABCD'[q.answer]} — ${esc(q.options[q.answer])}</strong><p>${esc(q.explanation)}</p><div class="tip">Lecture reference: ${esc(q.source)}</div></div><h3>Score teams (±$${val})</h3><p class="tip">Check teams that answered correctly. Unchecked teams can receive 0 or lose points, depending on the scoring rule selected.</p><div class="quick-controls"><button onclick="document.querySelectorAll('.correctTeam').forEach(x=>x.checked=true)">Select all teams</button><button onclick="document.querySelectorAll('.correctTeam').forEach(x=>x.checked=false)">Clear selections</button></div><div class="award">${state.teams.map((t,i)=>`<label><input type="checkbox" class="correctTeam" value="${i}"> ${esc(t.name)}</label>`).join('')}</div><div class="field"><label>Incorrect team scoring</label><select id="wrongPenalty"><option value="0">No penalty (recommended)</option><option value="1">Subtract question value</option></select></div><div class="actions"><button class="btn gold" onclick="commitQuestion()">Award points & return to board</button></div>`);document.getElementById('instructorExplain').scrollIntoView({behavior:'smooth',block:'nearest'});beep()}
+function commitQuestion(){let checked=new Set([...document.querySelectorAll('.correctTeam:checked')].map(x=>Number(x.value))),val=current.value*(state.daily.includes(current.id)?2:1),penalty=$('wrongPenalty').value==='1';state.teams.forEach((t,i)=>t.score+=checked.has(i)?val:(penalty?-val:0));state.used.push(current.id);state.history.push({id:current.id,correct:[...checked],value:val,penalty});save();closeOverlay();render()}
+function openFinal(){if(state.finalDone&&!confirm('Final Jeopardy has already been scored. Open it again?'))return;stopTimer();overlay(`<div class="special">FINAL JEOPARDY!</div><h2>INTEGRATED EXERCISE PHYSIOLOGY</h2><p class="question">Each team privately chooses a wager up to its current positive score, then explains how prolonged exercise in hot, humid conditions can simultaneously affect sweating effectiveness, plasma volume, stroke volume, heart rate, and cardiac output.</p><div class="fig">${figure('drift',true)}</div><p class="tip">Allow 90 seconds for discussion. Teams should identify the causal chain, not simply list directions of change.</p><div class="award">${state.teams.map((t,i)=>`<div class="field"><label>${esc(t.name)} (available $${Math.max(0,t.score)})</label><input type="number" min="0" max="${Math.max(0,t.score)}" value="0" class="wager" data-i="${i}"></div>`).join('')}</div><div class="actions"><button class="btn gold" onclick="revealFinal()">Reveal model explanation</button><button class="btn" onclick="closeOverlay()">Return to board</button></div>`)}function revealFinal(){let wagers=[...document.querySelectorAll('.wager')].map(x=>({i:Number(x.dataset.i),w:Math.max(0,Math.min(Math.max(0,state.teams[Number(x.dataset.i)].score),Number(x.value)||0))}));window.finalWagers=wagers;$('modal').innerHTML=`<h2>Final Jeopardy — Instructor explanation</h2><div class="explain"><strong>Model response:</strong> Humidity reduces the vapor-pressure gradient, making sweat evaporation less effective. Prolonged heat exposure and sweating contribute to fluid loss and lower plasma volume. Reduced venous return and end-diastolic filling can lower stroke volume. Heart rate tends to rise to compensate (cardiovascular drift), helping preserve cardiac output, although compensation may become insufficient under severe strain. More skin blood flow also competes with active muscle perfusion.</div><p class="tip">Mark each team's explanation correct or incorrect. Wagers will be added or subtracted.</p><div class="award">${wagers.map(({i,w})=>`<label><input type="checkbox" class="finalCorrect" value="${i}"> ${esc(state.teams[i].name)} · wager $${w}</label>`).join('')}</div><div class="actions"><button class="btn gold" onclick="scoreFinal()">Apply wagers & show standings</button></div>`}function scoreFinal(){let correct=new Set([...document.querySelectorAll('.finalCorrect:checked')].map(x=>Number(x.value)));window.finalWagers.forEach(({i,w})=>state.teams[i].score+=correct.has(i)?w:-w);state.finalDone=true;save();closeOverlay();render();let standings=[...state.teams].sort((a,b)=>b.score-a.score);overlay(`<h2>🏆 Final Standings</h2><div class="podium">${esc(standings[0].name)} wins!</div><div class="award">${standings.map((t,i)=>`<div class="team"><div class="name">${i+1}. ${esc(t.name)}</div><div class="score">$${t.score}</div></div>`).join('')}</div><div class="actions"><button class="btn gold" onclick="closeOverlay()">Return to board</button></div>`)}function exportState(){let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='EXSS352_Jeopardy_progress.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}function importState(e){let f=e.target.files[0];if(!f)return;f.text().then(s=>{try{let d=JSON.parse(s);if(!Array.isArray(d.teams)||!Array.isArray(d.used))throw Error('Invalid game progress');state={...defaults(),...d};save();render();alert('Progress restored.')}catch(err){alert('Could not import: '+err.message)}});e.target.value=''}function resetGame(){if(confirm('Reset ALL team scores and completed questions? This cannot be undone unless you exported progress.')){state=defaults();save();render()}}
+document.addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea'))return;if(e.key==='Escape'&&!$('overlay').classList.contains('hidden'))closeOverlay();if(e.code==='Space'&&!$('overlay').classList.contains('hidden')&&current&&!revealed){e.preventDefault();if(interval)stopTimer();else if($('startTimer'))startTimer()}});function figure(type,inner=false){if(!type)return '';let base=(body,labels='')=>`<div class="fig"><svg viewBox="0 0 640 240" role="img" aria-label="Schematic physiological graph"><rect width="640" height="240" rx="9" fill="#f7faff"/><g stroke="#dce6f4" stroke-width="1"><path d="M68 65 H606 M68 110 H606 M68 155 H606 M175 25 V200 M285 25 V200 M395 25 V200 M505 25 V200"/></g><path d="M68 25 V200 H606" stroke="#243a5d" stroke-width="2" fill="none"/>${body}${labels}<text x="332" y="230" font-size="14" text-anchor="middle" fill="#243a5d">${type==='oxy'?'PO₂':type==='pressure'?'Intrathoracic pressure':type==='frank'?'End-diastolic volume / preload':type==='ventdrive'?'Arterial partial pressure':type==='trained'?'Exercise intensity / absolute workload':type==='fick'?'Training status':type==='eiah'?'Exercise intensity':type==='static'?'Contraction intensity':type==='flow'?'Exercise intensity':'Time / exercise intensity'}</text></svg><div class="fig-caption">SCHEMATIC PHYSIOLOGICAL RESPONSE · Interpret trends, not exact numerical values</div></div>`;let line=(d,color='#2363c6',dash='')=>`<path d="${d}" stroke="${color}" stroke-width="5" fill="none" stroke-linecap="round" ${dash?'stroke-dasharray="9 7"':''}/>`;let txt=(x,y,s,color='#243a5d')=>`<text x="${x}" y="${y}" font-size="14" fill="${color}">${s}</text>`;let body='';switch(type){case 'oxy':body=line('M70 192 C135 191 190 181 244 143 S333 51 420 34 S534 30 594 29')+line('M70 189 C143 182 188 150 232 105 S329 34 414 29 S538 27 594 26','#e07038','dash')+txt(365,87,'Right shift → easier unloading','#e07038')+txt(410,53,'Reference','#2363c6')+txt(8,20,'Hb O₂ saturation');break;case 'ventdrive':body=line('M70 187 C170 183 255 178 343 149 S494 69 592 35')+line('M70 37 C125 44 160 108 200 162 S450 185 590 187','#e07038')+txt(407,55,'CO₂ drive')+txt(96,42,'Hypoxic drive','#e07038')+txt(5,20,'Ventilation');break;case 'frank':body=line('M70 191 C160 160 241 85 348 52 S490 41 588 40')+txt(5,20,'Stroke volume');break;case 'trained':body=line('M70 172 L580 39')+line('M70 193 L580 83','#e07038')+txt(455,36,'Before training')+txt(450,103,'After training','#e07038')+txt(4,20,'HR (schematic)');break;case 'drift':body=line('M70 115 C240 105 390 75 590 35','#e07038')+line('M70 100 C245 115 390 153 590 184','#2363c6')+txt(523,33,'HR ↑','#e07038')+txt(522,198,'SV ↓','#2363c6')+txt(5,20,'Relative response');break;case 'eiah':body=line('M70 42 L270 43 C400 45 480 78 590 125','#2363c6')+line('M70 190 C275 182 380 137 590 35','#e07038')+txt(464,112,'SaO₂ ↓')+txt(447,31,'A–aPO₂ ↑','#e07038')+txt(5,20,'Relative trend');break;case 'pressure':body=line('M70 150 C170 98 245 65 305 65 S390 70 430 105 S515 155 590 192')+txt(105,85,'Negative')+txt(445,98,'Positive')+txt(5,20,'SV');break;case 'flow':body=line('M70 182 C200 159 370 112 590 39')+line('M70 68 C220 99 390 138 590 183','#e07038')+txt(520,34,'Q̇ ↑')+txt(522,196,'TPR ↓','#e07038')+txt(5,20,'Relative trend');break;case 'increment':body=line('M70 187 C210 156 370 96 590 35')+line('M70 75 C240 98 410 140 590 180','#e07038')+txt(520,32,'HR/Q̇ ↑')+txt(525,194,'TPR ↓','#e07038')+txt(5,20,'Relative trend');break;case 'respdrift':body=line('M70 170 C170 89 245 83 315 81 S455 75 590 42')+txt(5,20,'Ventilation');break;case 'static':body=line('M70 189 C260 177 345 137 590 35')+txt(5,20,'BP response');break;case 'fick':body=`<rect x="130" y="106" width="120" height="94" fill="#2363c6"/><rect x="360" y="49" width="120" height="151" fill="#e07038"/>`+txt(150,95,'Pre-training')+txt(380,39,'Post-training')+txt(5,20,'VO₂max');break;default:body=line('M70 185 L590 40')+txt(5,20,'Relative response')}return base(body)}
+load();render();</script></body></html>
